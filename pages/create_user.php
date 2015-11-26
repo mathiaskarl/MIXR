@@ -32,6 +32,7 @@ switch (isset($_GET['step'])) {
             <tbody>
             <tr>
                 <td>";
+                echo "<div class='label'>Select Your Age:</div>";
                 foreach(getObjectsFromList($ageGroups) as $value) {
                     echo "<input type='radio' name='agegroup' value='".$value->Id."'";
                     if((isset($userHandler->get_prepare_session()->AgeGroupId) && $userHandler->get_prepare_session()->AgeGroupId == $value->Id) || isset($_POST['agegroup']) && $_POST['agegroup'] == $value->Id) {
@@ -43,6 +44,7 @@ switch (isset($_GET['step'])) {
             </tr>
             <tr>
                 <td>";
+                echo "<div class='label'>Select Your Favorite Genres:</div>";
                 foreach(getObjectsFromList($genres) as $value) {
                     echo "<input type='checkbox' name='genres[]' value='".$value->Id."'";
                     if(isset($userHandler->get_prepare_session()->PreferedGenres)) {
@@ -89,26 +91,31 @@ switch (isset($_GET['step'])) {
         echo "
     <div id='login_container'>
 	<form name='submit' method='post' action=''>
+        
         <input type='hidden' name='token' value='" . $config->token . "'>
 	<table valign='top'>
 	<tbody>
         <tr>
             <td>
-                <input type='text' name='email' value='".$defaultValue['Email']."' class='login_input' size='25'>
+                <div class='label'>Email Address:</div>
+                <input type='text' name='email' value='' class='login_input' size='25'>
             </td>
 	</tr>
 	<tr>
             <td>
-                <input type='text' name='username' value='".$defaultValue['Username']."' class='login_input' size='25'>
+                <div class='label'>Username:</div>
+                <input type='text' name='username' value='' class='login_input' size='25'>
             </td>
 	</tr>
         <tr>
             <td>
+                <div class='label'>Enter Your Password:</div>
                 <input type='password' name='password1' value='' class='login_input' size='25'>
             </td>
 	</tr>
         <tr>
             <td>
+                <div class='label'>Repeat Your Password:</div>
                 <input type='password' name='password2' value='' class='login_input' size='25'>
             </td>
 	</tr>

@@ -27,11 +27,13 @@ switch (isset($_GET['do'])) {
 	<tbody>
         <tr>
             <td>
-                <input type='text' name='username' value='Username' class='login_input' size='25'>
+                <div class='label'>Username:</div>
+                <input type='text' name='username' value='' class='login_input' size='25'>
             </td>
 	</tr>
 	<tr>
             <td>
+                <div class='label'>Password:</div>
                 <input type='password' name='password' value='' class='login_input' size='25'>
             </td>
 	</tr>
