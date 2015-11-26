@@ -4,6 +4,7 @@
         <ul id='nav'>
                 <li><a href='?page=front'>Front</a></li>";
     if($loginHandler->check_login()) {
+        echo "<li><a href='?page=preferences&step=preferences'>Change Preferences</a></li>";
         echo "<li><a href='?page=preferences&step=password'>Change Password</a></li>";
         echo "<li><a href='?page=login&do=logout'>Log out</a></li>";
     } else {

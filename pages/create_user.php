@@ -64,7 +64,8 @@ switch (isset($_GET['step'])) {
             </tr>
             <tr>
                 <td>
-                    <input type='submit' name='submit' value='Create' class='login_button' style='margin-right:10px;'><input type='reset' name='reset' value='Reset fields' class='login_button'>
+                    <input type='submit' name='submit' value='Create' class='login_button' style='margin-right:10px;'>
+                    <input type='reset' name='reset' value='Reset fields' class='login_button'>
                 </td>
             </tr>
             </tbody>

@@ -62,9 +62,9 @@ class UserHandler
                 }
                 $this->_user->PreferedGenres = $preferedGenres;
             }
-            $this->_user->AgeGroupId = $ageGroup;
+            $this->_user->AgeGroupId = $ageGroupId;
             
-            if(empty($ageGroup) || !is_numeric($ageGroup)) {
+            if(empty($ageGroupId) || !is_numeric($ageGroupId)) {
 		throw new Exception ("EMPTY_FORM");
 	    }
 	    
