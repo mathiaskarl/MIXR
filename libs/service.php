@@ -50,13 +50,14 @@ class ChangePasswordResponse {
   public $ChangePasswordResult; // boolean
 }
 
-class ChangeGenres {
+class ChangePreferences {
   public $user; // User
+  public $ageGroupId; // int
   public $genres; // ArrayOfGenre
 }
 
-class ChangeGenresResponse {
-  public $ChangeGenresResult; // boolean
+class ChangePreferencesResponse {
+  public $ChangePreferencesResult; // boolean
 }
 
 class GetUser {
@@ -127,8 +128,8 @@ class Service extends SoapClient {
                                     'LoginResponse' => 'LoginResponse',
                                     'ChangePassword' => 'ChangePassword',
                                     'ChangePasswordResponse' => 'ChangePasswordResponse',
-                                    'ChangeGenres' => 'ChangeGenres',
-                                    'ChangeGenresResponse' => 'ChangeGenresResponse',
+                                    'ChangePreferences' => 'ChangePreferences',
+                                    'ChangePreferencesResponse' => 'ChangePreferencesResponse',
                                     'GetUser' => 'GetUser',
                                     'GetUserResponse' => 'GetUserResponse',
                                     'GetAgeGroups' => 'GetAgeGroups',
@@ -198,11 +199,11 @@ class Service extends SoapClient {
   /**
    *  
    *
-   * @param ChangeGenres $parameters
-   * @return ChangeGenresResponse
+   * @param ChangePreferences $parameters
+   * @return ChangePreferencesResponse
    */
-  public function ChangeGenres(ChangeGenres $parameters) {
-    return $this->__soapCall('ChangeGenres', array($parameters),       array(
+  public function ChangePreferences(ChangePreferences $parameters) {
+    return $this->__soapCall('ChangePreferences', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )

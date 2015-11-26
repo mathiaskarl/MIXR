@@ -32,6 +32,45 @@ class UserHandler
         return $this->_access;
     }
     
+    public function change_password($oldPassword, $newPassword1, $newPassword2) {
+        $this->_access = false;
+        $this->prepare_password_change($oldPassword, $newPassword1, $newPassword2);
+        return $this->_access;
+    }
+    
+    private function prepare_password_change($oldPassword, $newPassword1, $newPassword2) {
+        try 
+	{
+	    if(empty($oldPassword) || empty($newPassword1) || empty($newPassword2) || strlen(trim($oldPassword)) == 0 || strlen(trim($newPassword1)) == 0 || strlen(trim($newPassword2))) {
+		throw new Exception ("EMPTY_FORM");
+	    }
+            
+            if($newPassword1 != $newPassword2) {
+                throw new Exception ("CREATE_USER_MISMATCH_PASSWORD");
+            }
+            
+            $checkUsernameEmail = new CheckUsernameEmailExists();
+            $checkUsernameEmail->user = $this->_user->Username;
+            
+            if($this->_service->CheckUsernameEmailExists($checkUsernameEmail)->CheckUsernameEmailExistsResult) {
+		throw new Exception ("CREATE_USERNAME_TAKEN");
+	    }
+            
+            $checkUsernameEmail->user = $this->_user->Email;
+            
+            if($this->_service->CheckUsernameEmailExists($checkUsernameEmail)->CheckUsernameEmailExistsResult) {
+		throw new Exception ("CREATE_EMAIL_TAKEN");
+	    }
+            
+	    $this->register_prepare_session();
+            $this->_access = true;
+	}
+	catch (Exception $ex) 
+	{
+            $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+	}
+    }
+    
     private function prepare_create($email, $username, $password1, $password2)
     {
 	try 
