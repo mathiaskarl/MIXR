@@ -11,7 +11,7 @@ switch (isset($_GET['step'])) {
             die();
         }
         if (isset($_POST['submit'])) {
-            if ($userHandler->create_user((isset($_POST['agegroup']) ? $_POST['agegroup'] : null), $_POST['genres'])) {
+            if ($userHandler->create_user((isset($_POST['agegroup']) ? $_POST['agegroup'] : null), isset($_POST['genres']) ? $_POST['genres'] : null)) {
                 if($loginHandler->check_login($userHandler->get_prepare_session()->Username, $userHandler->get_prepare_session()->Password, $config->token)) {
                     $userHandler->unset_prepare_session();
                     header('Location: http://localhost:8080/MIXR/');
