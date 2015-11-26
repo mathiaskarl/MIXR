@@ -40,7 +40,7 @@ class UserHandler
 		throw new Exception ("INVALID_FORM");
 	    }
 	    
-	    if(empty($email) || empty($username) || empty($password1) || empty($password2)) {
+	    if(empty($email) || empty($username) || empty($password1) || empty($password2) || strlen(trim($email)) == 0 || strlen(trim($username)) == 0 || strlen(trim($password1)) == 0 || strlen(trim($password2)) == 0) {
 		throw new Exception ("EMPTY_FORM");
 	    }
             
