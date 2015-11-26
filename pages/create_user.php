@@ -12,12 +12,12 @@ switch (isset($_GET['step'])) {
         }
         if (isset($_POST['submit'])) {
             if ($userHandler->create_user((isset($_POST['agegroup']) ? $_POST['agegroup'] : null), $_POST['genres'])) {
-                if(!$loginHandler->check_login($userHandler->get_prepare_session()->Username, $userHandler->get_prepare_session()->Password, $config->token)) {
-                    echo "nej";
+                if($loginHandler->check_login($userHandler->get_prepare_session()->Username, $userHandler->get_prepare_session()->Password, $config->token)) {
+                    $userHandler->unset_prepare_session();
+                    header('Location: http://localhost:8080/MIXR/');
+                    die();
                 } else {
-                $userHandler->unset_prepare_session();
-                header('Location: http://localhost:8080/MIXR/');
-                die();
+                    echo $loginHandler->_error->ErrorMessage;
                 }
             } else {
                 echo $userHandler->_error->ErrorMessage;
