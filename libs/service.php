@@ -52,8 +52,6 @@ class ChangePasswordResponse {
 
 class ChangePreferences {
   public $user; // User
-  public $ageGroupId; // int
-  public $genres; // ArrayOfGenre
 }
 
 class ChangePreferencesResponse {

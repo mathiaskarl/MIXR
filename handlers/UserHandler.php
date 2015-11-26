@@ -39,10 +39,57 @@ class UserHandler
         return $this->_access;
     }
     
-    public function change_preferences($oldPassword, $newPassword1, $newPassword2) {
+    public function change_preferences($user, $ageGroupId, $genres) {
         $this->_access = false;
-        $this->prepare_password_change($oldPassword, $newPassword1, $newPassword2);
+        $this->_user = $user;
+        $this->prepare_change_preferences($ageGroupId, $genres);
         return $this->_access;
+    }
+    
+    private function prepare_change_preferences($ageGroupId, $genres) {
+        try 
+	{
+            if(!isset($this->_user->Id)) {
+                throw new Exception ("USER_MUST_BE_LOGGED_IN");
+            }
+            
+            if(is_array($genres)) {
+                $preferedGenres = array();
+                foreach($genres as $value) {
+                    $genre = new Genre();
+                    $genre->Id = $value;
+                    array_push($preferedGenres, $genre);
+                }
+                $this->_user->PreferedGenres = $preferedGenres;
+            }
+            $this->_user->AgeGroupId = $ageGroup;
+            
+            if(empty($ageGroup) || !is_numeric($ageGroup)) {
+		throw new Exception ("EMPTY_FORM");
+	    }
+	    
+	    $ChangePreferences = new ChangePreferences();
+            $ChangePreferences->user = $this->_user;
+            $ChangePreferences->ageGroupId = $ageGroup;
+            $ChangePreferences->newPassword = $newPassword1;
+            
+            if(!$this->_service->ChangePassword($ChangePassword)->ChangePasswordResult) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
+		throw new Exception ("WS_ERROR");
+	    }
+	    
+	    $this->_access = true;
+	}
+	catch (Exception $ex) 
+	{
+            $this->register_prepare_session();
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
+            
+	}
     }
     
     private function prepare_password_change($oldPassword, $newPassword1, $newPassword2) {
