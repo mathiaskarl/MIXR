@@ -49,17 +49,12 @@ class UserHandler
                 throw new Exception ("CREATE_USER_MISMATCH_PASSWORD");
             }
             
-            $checkUsernameEmail = new CheckUsernameEmailExists();
-            $checkUsernameEmail->user = $this->_user->Username;
+            $ChangePassword = new ChangePassword();
+            $ChangePassword->oldPassword = $oldPassword;
+            $ChangePassword->newPassword = $newPassword1;
             
-            if($this->_service->CheckUsernameEmailExists($checkUsernameEmail)->CheckUsernameEmailExistsResult) {
-		throw new Exception ("CREATE_USERNAME_TAKEN");
-	    }
-            
-            $checkUsernameEmail->user = $this->_user->Email;
-            
-            if($this->_service->CheckUsernameEmailExists($checkUsernameEmail)->CheckUsernameEmailExistsResult) {
-		throw new Exception ("CREATE_EMAIL_TAKEN");
+            if($this->_service->ChangePassword($ChangePassword)->ChangePasswordResult) {
+		throw new Exception ("WS_ERROR");
 	    }
             
 	    $this->register_prepare_session();
@@ -67,7 +62,12 @@ class UserHandler
 	}
 	catch (Exception $ex) 
 	{
-            $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            $this->register_prepare_session();
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
 	}
     }
     
