@@ -70,10 +70,8 @@ class UserHandler
 	    
 	    $ChangePreferences = new ChangePreferences();
             $ChangePreferences->user = $this->_user;
-            $ChangePreferences->ageGroupId = $ageGroup;
-            $ChangePreferences->newPassword = $newPassword1;
             
-            if(!$this->_service->ChangePassword($ChangePassword)->ChangePasswordResult) {
+            if(!$this->_service->ChangePreferences($ChangePreferences)->ChangePreferencesResult) {
                 $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
 		throw new Exception ("WS_ERROR");
 	    }
@@ -82,7 +80,6 @@ class UserHandler
 	}
 	catch (Exception $ex) 
 	{
-            $this->register_prepare_session();
             if($ex->getMessage() == "WS_ERROR") {
                 $this->_error = $this->_ws_error;
             } else {
