@@ -56,6 +56,10 @@ class UserHandler
                 throw new Exception ("CREATE_USER_MISMATCH_PASSWORD");
             }
             
+            if(!isset($this->_user->Id)) {
+                throw new Exception ("USER_MUST_BE_LOGGED_IN");
+            }
+            
             $ChangePassword = new ChangePassword();
             $ChangePassword->user = $this->_user;
             $ChangePassword->oldPassword = $oldPassword;

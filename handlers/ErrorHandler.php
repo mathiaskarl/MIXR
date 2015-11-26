@@ -57,6 +57,10 @@ class ErrorHandler
             case "CREATE_EMAIL_TAKEN":
                 $errorMessage = "This email is connected to another user.";
                 break;
+            
+            case "USER_MUST_BE_LOGGED_IN":
+                $errorMessage = "You must be logged in to use this feature.";
+                break;
 
             default:
                 $errorCode = "UNKOWN_ERROR";
