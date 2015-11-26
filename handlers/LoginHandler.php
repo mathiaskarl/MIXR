@@ -100,6 +100,13 @@ class LoginHandler
         $_SESSION['user'] = $this->_user;
     }
     
+    public function user_session() 
+    {
+	if($this->session_exist()) {
+            return $_SESSION['user'];
+        }
+    }
+    
     private function session_exist() 
     {
 	return (isset($_SESSION['user'])) ? true : false;
