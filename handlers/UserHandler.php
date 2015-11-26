@@ -32,7 +32,14 @@ class UserHandler
         return $this->_access;
     }
     
-    public function change_password($oldPassword, $newPassword1, $newPassword2) {
+    public function change_password($user, $oldPassword, $newPassword1, $newPassword2) {
+        $this->_access = false;
+        $this->_user = $user;
+        $this->prepare_password_change($oldPassword, $newPassword1, $newPassword2);
+        return $this->_access;
+    }
+    
+    public function change_preferences($oldPassword, $newPassword1, $newPassword2) {
         $this->_access = false;
         $this->prepare_password_change($oldPassword, $newPassword1, $newPassword2);
         return $this->_access;
@@ -50,6 +57,7 @@ class UserHandler
             }
             
             $ChangePassword = new ChangePassword();
+            $ChangePassword->user = $this->_user;
             $ChangePassword->oldPassword = $oldPassword;
             $ChangePassword->newPassword = $newPassword1;
             
