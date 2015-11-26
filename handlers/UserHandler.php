@@ -48,7 +48,7 @@ class UserHandler
     private function prepare_password_change($oldPassword, $newPassword1, $newPassword2) {
         try 
 	{
-	    if(empty($oldPassword) || empty($newPassword1) || empty($newPassword2) || strlen(trim($oldPassword)) == 0 || strlen(trim($newPassword1)) == 0 || strlen(trim($newPassword2))) {
+	    if(empty($oldPassword) || empty($newPassword1) || empty($newPassword2) || strlen(trim($oldPassword)) == 0 || strlen(trim($newPassword1)) == 0 || strlen(trim($newPassword2)) == 0) {
 		throw new Exception ("EMPTY_FORM");
 	    }
             
@@ -65,16 +65,15 @@ class UserHandler
             $ChangePassword->oldPassword = $oldPassword;
             $ChangePassword->newPassword = $newPassword1;
             
-            if($this->_service->ChangePassword($ChangePassword)->ChangePasswordResult) {
+            if(!$this->_service->ChangePassword($ChangePassword)->ChangePasswordResult) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
 		throw new Exception ("WS_ERROR");
 	    }
             
-	    $this->register_prepare_session();
             $this->_access = true;
 	}
 	catch (Exception $ex) 
 	{
-            $this->register_prepare_session();
             if($ex->getMessage() == "WS_ERROR") {
                 $this->_error = $this->_ws_error;
             } else {
