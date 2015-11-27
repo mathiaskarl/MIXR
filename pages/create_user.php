@@ -1,5 +1,4 @@
 <?php
-
 if ($loginHandler->check_login()) {
     header('Location: http://localhost:8080/MIXR/');
     die();

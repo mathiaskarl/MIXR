@@ -52,7 +52,7 @@ class UserHandler
             if(!isset($this->_user->Id)) {
                 throw new Exception ("USER_MUST_BE_LOGGED_IN");
             }
-            
+                
             if(is_array($genres)) {
                 $preferedGenres = array();
                 foreach($genres as $value) {
@@ -61,6 +61,8 @@ class UserHandler
                     array_push($preferedGenres, $genre);
                 }
                 $this->_user->PreferedGenres = $preferedGenres;
+            } else {
+                $this->_user->PreferedGenres = null;
             }
             $this->_user->AgeGroupId = $ageGroupId;
             
@@ -220,6 +222,20 @@ class UserHandler
             }
             
 	}
+    }
+    
+    public function get_updated_genres($genres) {
+        $genreObjects = new stdClass();
+        $genreArray = array();
+        if(!empty($genres)) {
+            foreach ($genres as $value) {
+                $genre = new Genre;
+                $genre->Id = $value;
+                $genreArray[] = $genre;
+            }
+        }
+        $genreObjects->Genre = $genreArray;
+        return $genreObjects;
     }
     
     private function verify_create()
