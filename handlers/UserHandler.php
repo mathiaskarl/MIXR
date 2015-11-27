@@ -53,6 +53,10 @@ class UserHandler
                 throw new Exception ("USER_MUST_BE_LOGGED_IN");
             }
                 
+            if(empty($ageGroupId) || !is_numeric($ageGroupId)) {
+		throw new Exception ("EMPTY_FORM");
+	    }
+            
             if(is_array($genres)) {
                 $preferedGenres = array();
                 foreach($genres as $value) {
@@ -65,10 +69,6 @@ class UserHandler
                 $this->_user->PreferedGenres = null;
             }
             $this->_user->AgeGroupId = $ageGroupId;
-            
-            if(empty($ageGroupId) || !is_numeric($ageGroupId)) {
-		throw new Exception ("EMPTY_FORM");
-	    }
 	    
 	    $ChangePreferences = new ChangePreferences();
             $ChangePreferences->user = $this->_user;
