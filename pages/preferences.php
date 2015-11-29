@@ -4,7 +4,7 @@ if (!$loginHandler->check_login()) {
     die();
 }
 
-switch ($_GET["step"]) {
+switch (isset($_GET["step"]) ? $_GET['step'] : null) {
     case 'password':
         echo "
                 <form name='password' method='post' action=''>

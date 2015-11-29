@@ -1,18 +1,5 @@
 <?php
-require "include/pages.php";
-require "libs/service.php";
-require "libs/config.php";
-require "libs/functions.php";
-require "handlers/LoginHandler.php";
-require "handlers/UserHandler.php";
-require "handlers/ErrorHandler.php";
-
-session_start();
-$config = new config();
-$service = new Service();
-$loginHandler = new LoginHandler($service);
-$userHandler = new UserHandler($service);
-
+require "include/includes.php";
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +10,8 @@ $userHandler = new UserHandler($service);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="UTF-8">
         <meta name="description" content="TBA">
         <meta name="keywords" content="MIXR, musik, humør">
-        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="javascript/jquery.js" type="text/javascript"></script>
+        <script src="javascript/player.js" type="text/javascript"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 

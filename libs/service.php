@@ -23,6 +23,32 @@ class Error {
   public $ErrorMessage; // string
 }
 
+class Song {
+  public $Album; // Album
+  public $AlbumId; // int
+  public $Artist; // Artist
+  public $ArtistId; // int
+  public $Filename; // string
+  public $Genres; // ArrayOfGenre
+  public $Id; // int
+  public $Name; // string
+}
+
+class Album {
+  public $ArtistId; // int
+  public $Id; // int
+  public $Name; // string
+  public $Year; // string
+}
+
+class Artist {
+  public $Id; // int
+  public $Name; // string
+}
+
+class SearchType {
+}
+
 class CreateUser {
   public $user; // User
 }
@@ -79,6 +105,74 @@ class GetGenresResponse {
   public $GetGenresResult; // ArrayOfGenre
 }
 
+class GetSongById {
+  public $id; // int
+}
+
+class GetSongByIdResponse {
+  public $GetSongByIdResult; // Song
+}
+
+class GetAlbumById {
+  public $id; // int
+}
+
+class GetAlbumByIdResponse {
+  public $GetAlbumByIdResult; // Album
+}
+
+class GetArtistById {
+  public $id; // int
+}
+
+class GetArtistByIdResponse {
+  public $GetArtistByIdResult; // Artist
+}
+
+class SearchSongs {
+  public $searchType; // SearchType
+  public $param; // string
+  public $user; // User
+}
+
+class SearchSongsResponse {
+  public $SearchSongsResult; // ArrayOfSong
+}
+
+class Discover {
+  public $user; // User
+}
+
+class DiscoverResponse {
+  public $DiscoverResult; // Song
+}
+
+class PlayFromList {
+  public $user; // User
+}
+
+class PlayFromListResponse {
+  public $PlayFromListResult; // Song
+}
+
+class AddtoPlaylist {
+  public $user; // User
+  public $songId; // int
+}
+
+class AddtoPlaylistResponse {
+  public $AddtoPlaylistResult; // boolean
+}
+
+class RemovefromPlaylist {
+  public $user; // User
+  public $songId; // int
+}
+
+class RemovefromPlaylistResponse {
+  public $RemovefromPlaylistResult; // boolean
+}
+
 class CheckUsernameEmailExists {
   public $user; // string
 }
@@ -120,6 +214,10 @@ class Service extends SoapClient {
                                     'Genre' => 'Genre',
                                     'AgeGroup' => 'AgeGroup',
                                     'Error' => 'Error',
+                                    'Song' => 'Song',
+                                    'Album' => 'Album',
+                                    'Artist' => 'Artist',
+                                    'SearchType' => 'SearchType',
                                     'CreateUser' => 'CreateUser',
                                     'CreateUserResponse' => 'CreateUserResponse',
                                     'Login' => 'Login',
@@ -134,6 +232,22 @@ class Service extends SoapClient {
                                     'GetAgeGroupsResponse' => 'GetAgeGroupsResponse',
                                     'GetGenres' => 'GetGenres',
                                     'GetGenresResponse' => 'GetGenresResponse',
+                                    'GetSongById' => 'GetSongById',
+                                    'GetSongByIdResponse' => 'GetSongByIdResponse',
+                                    'GetAlbumById' => 'GetAlbumById',
+                                    'GetAlbumByIdResponse' => 'GetAlbumByIdResponse',
+                                    'GetArtistById' => 'GetArtistById',
+                                    'GetArtistByIdResponse' => 'GetArtistByIdResponse',
+                                    'SearchSongs' => 'SearchSongs',
+                                    'SearchSongsResponse' => 'SearchSongsResponse',
+                                    'Discover' => 'Discover',
+                                    'DiscoverResponse' => 'DiscoverResponse',
+                                    'PlayFromList' => 'PlayFromList',
+                                    'PlayFromListResponse' => 'PlayFromListResponse',
+                                    'AddtoPlaylist' => 'AddtoPlaylist',
+                                    'AddtoPlaylistResponse' => 'AddtoPlaylistResponse',
+                                    'RemovefromPlaylist' => 'RemovefromPlaylist',
+                                    'RemovefromPlaylistResponse' => 'RemovefromPlaylistResponse',
                                     'CheckUsernameEmailExists' => 'CheckUsernameEmailExists',
                                     'CheckUsernameEmailExistsResponse' => 'CheckUsernameEmailExistsResponse',
                                     'ReturnError' => 'ReturnError',
@@ -244,6 +358,118 @@ class Service extends SoapClient {
    */
   public function GetGenres(GetGenres $parameters) {
     return $this->__soapCall('GetGenres', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetSongById $parameters
+   * @return GetSongByIdResponse
+   */
+  public function GetSongById(GetSongById $parameters) {
+    return $this->__soapCall('GetSongById', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetAlbumById $parameters
+   * @return GetAlbumByIdResponse
+   */
+  public function GetAlbumById(GetAlbumById $parameters) {
+    return $this->__soapCall('GetAlbumById', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetArtistById $parameters
+   * @return GetArtistByIdResponse
+   */
+  public function GetArtistById(GetArtistById $parameters) {
+    return $this->__soapCall('GetArtistById', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param SearchSongs $parameters
+   * @return SearchSongsResponse
+   */
+  public function SearchSongs(SearchSongs $parameters) {
+    return $this->__soapCall('SearchSongs', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param Discover $parameters
+   * @return DiscoverResponse
+   */
+  public function Discover(Discover $parameters) {
+    return $this->__soapCall('Discover', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param PlayFromList $parameters
+   * @return PlayFromListResponse
+   */
+  public function PlayFromList(PlayFromList $parameters) {
+    return $this->__soapCall('PlayFromList', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param AddtoPlaylist $parameters
+   * @return AddtoPlaylistResponse
+   */
+  public function AddtoPlaylist(AddtoPlaylist $parameters) {
+    return $this->__soapCall('AddtoPlaylist', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param RemovefromPlaylist $parameters
+   * @return RemovefromPlaylistResponse
+   */
+  public function RemovefromPlaylist(RemovefromPlaylist $parameters) {
+    return $this->__soapCall('RemovefromPlaylist', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )

@@ -3,7 +3,7 @@ if ($loginHandler->check_login()) {
     header('Location: http://localhost:8080/MIXR/');
     die();
 }
-switch (isset($_GET['step'])) {
+switch (isset($_GET['step']) ? $_GET['step'] : null) {
     case '2':
         if(!isset($_SESSION['user_create'])) {
             header('Location: http://localhost:8080/MIXR/?page=create_user');

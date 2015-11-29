@@ -1,5 +1,5 @@
 <?php
-switch (isset($_GET['do'])) {
+switch (isset($_GET['do']) ? $_GET['do'] : null) {
     case 'logout':
         $loginHandler->log_out();
         header('Location: http://localhost:8080/MIXR/');
