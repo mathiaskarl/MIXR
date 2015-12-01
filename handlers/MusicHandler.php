@@ -45,10 +45,10 @@ class MusicHandler
         return $this->_access;
     }
     
-    public function discover_by_artist($user, $artist) {
+    public function discover_by_artist($user, $artistId) {
         $this->_access = false;
         $this->_user = $user;
-        $this->prepare_discover_by_artist($user, $artist);
+        $this->prepare_discover_by_artist($user, $artistId);
         return $this->_access;
     }
     
@@ -207,14 +207,14 @@ class MusicHandler
 	}
     }
     
-    private function prepare_discover_by_artist($user, $artist) {
+    private function prepare_discover_by_artist($user, $artistId) {
         try {
             if (!isset($this->_user->Id)) {
                 throw new Exception("USER_MUST_BE_LOGGED_IN");
             }
             
             $discover_by_artist = new DiscoverByArtist();
-            $discover_by_artist->artist = $artist;
+            $discover_by_artist->artistId = $artistId;
             $discover_by_artist->user = $this->_user;
             $discover_by_artist->lastPlayedId = $this->get_last_played();
             $discover_by_artist_result = $this->_service->DiscoverByArtist($discover_by_artist)->DiscoverByArtistResult;
