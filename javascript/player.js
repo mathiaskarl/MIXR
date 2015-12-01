@@ -5,6 +5,8 @@ $(document).ready(function () {
         $('#artist').empty().append(data.artist);
         $('#album').empty().append(data.album);
         $('.song_id').attr("value", data.id);
+        $('.artist_id').attr("value", data.artist_id);
+        
         
         var musicPath = "music/" + data.filepath;
         var audio = $("#player");
@@ -36,6 +38,23 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php",
+            data: form.serialize(),
+            dataType: 'json',
+            success: function (data) {
+                if (data.status === true) {
+                    replace(data);
+                } else {
+                    alert(data.error);
+                }
+            }
+        });
+    });
+    
+    $('.discover_by_artist').click(function () {
+        var form = $(this.form);
+        $.ajax({
+            type: "POST",
+            url: "include/ajax/player.php?do=discover_by_artist",
             data: form.serialize(),
             dataType: 'json',
             success: function (data) {

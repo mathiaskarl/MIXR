@@ -45,6 +45,13 @@ class MusicHandler
         return $this->_access;
     }
     
+    public function discover_by_artist($user, $artist) {
+        $this->_access = false;
+        $this->_user = $user;
+        $this->prepare_discover_by_artist($user, $artist);
+        return $this->_access;
+    }
+    
     private function prepare_remove_from_list($user, $songId) {
         try 
 	{
@@ -181,6 +188,40 @@ class MusicHandler
                 $this->_error = ErrorHandler::ReturnError($ex->getMessage());
             }
 	}
+    }
+    
+    private function prepare_discover_by_artist($user, $artist) {
+        try {
+            if (!isset($this->_user->Id)) {
+                throw new Exception("USER_MUST_BE_LOGGED_IN");
+            }
+            
+            $discover_by_artist = new DiscoverByArtist();
+            $newartist = new Artist();
+            $newartist->Id = $artist;
+            
+            $discover_by_artist->artist = $newartist;
+            $discover_by_artist->user = $this->_user;
+            $discover_by_artist->lastPlayedId = $this->get_last_played();
+            $discover_by_artist_result = $this->_service->DiscoverByArtist($discover_by_artist)->DiscoverByArtistResult;
+            
+            if(empty($discover_by_artist_result) || $discover_by_artist_result == null) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
+                throw new Exception ("WS_ERROR");
+            }
+            
+            $this->set_song($discover_by_artist_result);
+            $this->set_last_played($this->song->Id);
+            $this->_access = true;
+        } 
+        catch (Exception $ex) 
+        {
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
+        }
     }
     
     private function set_last_played($value) {
