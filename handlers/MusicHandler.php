@@ -214,10 +214,7 @@ class MusicHandler
             }
             
             $discover_by_artist = new DiscoverByArtist();
-            $newartist = new Artist();
-            $newartist->Id = $artist;
-            
-            $discover_by_artist->artist = $newartist;
+            $discover_by_artist->artist = $artist;
             $discover_by_artist->user = $this->_user;
             $discover_by_artist->lastPlayedId = $this->get_last_played();
             $discover_by_artist_result = $this->_service->DiscoverByArtist($discover_by_artist)->DiscoverByArtistResult;
