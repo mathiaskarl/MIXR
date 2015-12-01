@@ -11,15 +11,37 @@ if($loginHandler->check_login()) {
     } else {
         echo $musicHandler->_error->ErrorMessage;
     }
+    $moods = $service->GetMoods(new GetMoods())->GetMoodsResult;
+    $genres = $service->GetGenres(new GetGenres())->GetGenresResult;
+    
     
     echo "<div style='margin-bottom:7px;'>Song name:<div id='songname'>" . $result->Name . "</div></div>";
     echo "<div style='margin-bottom:7px;'>File name:<div id='filename'>" . $result->Filename . "</div></div>";
     echo "<div style='margin-bottom:7px;'>Artist:<div id='artist'>" . $result->Artist->Name . "</div></div>";
     echo "<div>Album:<div id='album'>" . $result->Album->Name . "</div></div>";
-
+    
+    
+    
     echo "
-        <form name='discoverform' action='' method='post'>
-            <input type='button' class='discover' name='discover' value='Discover'>
+        <form name='discoverform' action='' method='post'>";
+    foreach(getObjectsFromList($moods) as $value) {
+        echo "<input type='radio' name='mood' value='".$value->Id."'";
+        if(isset($_POST['mood']) && $_POST['mood'] == $value->Id) {
+            echo "checked";
+        }
+        echo ">". $value->Name;
+    }
+    echo "<br/>";
+    foreach(getObjectsFromList($genres) as $value) {
+        echo "<input type='checkbox' name='genres[]' value='".$value->Id."'";
+        if (isset($_POST['genres'])) {
+            if($_POST['genres'] == $value->Id) {
+                echo "checked";
+            }
+        }
+        echo ">". $value->Name;
+    }
+    echo "<br /><input type='button' class='discover' name='discover' value='Discover'>
             <input type='button' class='playfromlist' name='playfromlist' value='Play from list'>
         </form>
         

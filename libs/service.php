@@ -18,6 +18,12 @@ class AgeGroup {
   public $Name; // string
 }
 
+class Mood {
+  public $Id; // int
+  public $Image; // string
+  public $Name; // string
+}
+
 class Error {
   public $ErrorCode; // string
   public $ErrorMessage; // string
@@ -114,6 +120,13 @@ class GetGenres {
 
 class GetGenresResponse {
   public $GetGenresResult; // ArrayOfGenre
+}
+
+class GetMoods {
+}
+
+class GetMoodsResponse {
+  public $GetMoodsResult; // ArrayOfMood
 }
 
 class GetSongById {
@@ -248,6 +261,7 @@ class Service extends SoapClient {
                                     'User' => 'User',
                                     'Genre' => 'Genre',
                                     'AgeGroup' => 'AgeGroup',
+                                    'Mood' => 'Mood',
                                     'Error' => 'Error',
                                     'Song' => 'Song',
                                     'Album' => 'Album',
@@ -268,6 +282,8 @@ class Service extends SoapClient {
                                     'GetAgeGroupsResponse' => 'GetAgeGroupsResponse',
                                     'GetGenres' => 'GetGenres',
                                     'GetGenresResponse' => 'GetGenresResponse',
+                                    'GetMoods' => 'GetMoods',
+                                    'GetMoodsResponse' => 'GetMoodsResponse',
                                     'GetSongById' => 'GetSongById',
                                     'GetSongByIdResponse' => 'GetSongByIdResponse',
                                     'GetAlbumById' => 'GetAlbumById',
@@ -398,6 +414,20 @@ class Service extends SoapClient {
    */
   public function GetGenres(GetGenres $parameters) {
     return $this->__soapCall('GetGenres', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetMoods $parameters
+   * @return GetMoodsResponse
+   */
+  public function GetMoods(GetMoods $parameters) {
+    return $this->__soapCall('GetMoods', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )
