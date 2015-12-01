@@ -20,9 +20,6 @@ if($loginHandler->check_login()) {
     echo "
         <form name='discoverform' action='' method='post'>
             <input type='button' class='discover' name='discover' value='Discover'>
-        </form>
-        
-        <form name='discoverform' action='' method='post'>
             <input type='button' class='playfromlist' name='playfromlist' value='Play from list'>
         </form>
         

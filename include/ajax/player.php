@@ -31,7 +31,7 @@ switch(isset($_GET['do']) ? $_GET['do'] : null) {
         break;
     
     default:
-        if($musicHandler->play_from_list($loginHandler->user_session(), 2, null)) {
+        if($musicHandler->play_from_list($loginHandler->user_session(), 1, null)) {
             $jsonArray = $musicHandler->convert_song_to_array($musicHandler->song);
             $jsonArray['status'] = true;
         } else {

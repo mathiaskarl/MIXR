@@ -46,6 +46,17 @@ class Artist {
   public $Name; // string
 }
 
+class InsertContainer {
+  public $AgeGroupIds; // ArrayOfint
+  public $AlbumTitle; // string
+  public $AlbumYear; // string
+  public $Artist; // string
+  public $Filename; // string
+  public $GenreIds; // ArrayOfint
+  public $MoodIds; // ArrayOfint
+  public $SongTitle; // string
+}
+
 class SearchType {
 }
 
@@ -150,6 +161,16 @@ class DiscoverResponse {
   public $DiscoverResult; // Song
 }
 
+class DiscoverByArtist {
+  public $user; // User
+  public $artist; // Artist
+  public $lastPlayedId; // int
+}
+
+class DiscoverByArtistResponse {
+  public $DiscoverByArtistResult; // Song
+}
+
 class PlayFromList {
   public $user; // User
   public $moodId; // int
@@ -177,6 +198,14 @@ class RemovefromPlaylist {
 
 class RemovefromPlaylistResponse {
   public $RemovefromPlaylistResult; // boolean
+}
+
+class AddSongToDatabase {
+  public $container; // InsertContainer
+}
+
+class AddSongToDatabaseResponse {
+  public $AddSongToDatabaseResult; // boolean
 }
 
 class CheckUsernameEmailExists {
@@ -223,6 +252,7 @@ class Service extends SoapClient {
                                     'Song' => 'Song',
                                     'Album' => 'Album',
                                     'Artist' => 'Artist',
+                                    'InsertContainer' => 'InsertContainer',
                                     'SearchType' => 'SearchType',
                                     'CreateUser' => 'CreateUser',
                                     'CreateUserResponse' => 'CreateUserResponse',
@@ -248,12 +278,16 @@ class Service extends SoapClient {
                                     'SearchSongsResponse' => 'SearchSongsResponse',
                                     'Discover' => 'Discover',
                                     'DiscoverResponse' => 'DiscoverResponse',
+                                    'DiscoverByArtist' => 'DiscoverByArtist',
+                                    'DiscoverByArtistResponse' => 'DiscoverByArtistResponse',
                                     'PlayFromList' => 'PlayFromList',
                                     'PlayFromListResponse' => 'PlayFromListResponse',
                                     'AddtoPlaylist' => 'AddtoPlaylist',
                                     'AddtoPlaylistResponse' => 'AddtoPlaylistResponse',
                                     'RemovefromPlaylist' => 'RemovefromPlaylist',
                                     'RemovefromPlaylistResponse' => 'RemovefromPlaylistResponse',
+                                    'AddSongToDatabase' => 'AddSongToDatabase',
+                                    'AddSongToDatabaseResponse' => 'AddSongToDatabaseResponse',
                                     'CheckUsernameEmailExists' => 'CheckUsernameEmailExists',
                                     'CheckUsernameEmailExistsResponse' => 'CheckUsernameEmailExistsResponse',
                                     'ReturnError' => 'ReturnError',
@@ -443,6 +477,20 @@ class Service extends SoapClient {
   /**
    *  
    *
+   * @param DiscoverByArtist $parameters
+   * @return DiscoverByArtistResponse
+   */
+  public function DiscoverByArtist(DiscoverByArtist $parameters) {
+    return $this->__soapCall('DiscoverByArtist', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
    * @param PlayFromList $parameters
    * @return PlayFromListResponse
    */
@@ -476,6 +524,20 @@ class Service extends SoapClient {
    */
   public function RemovefromPlaylist(RemovefromPlaylist $parameters) {
     return $this->__soapCall('RemovefromPlaylist', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param AddSongToDatabase $parameters
+   * @return AddSongToDatabaseResponse
+   */
+  public function AddSongToDatabase(AddSongToDatabase $parameters) {
+    return $this->__soapCall('AddSongToDatabase', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )
