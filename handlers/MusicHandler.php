@@ -130,7 +130,16 @@ class MusicHandler
             $playFromList = new PlayFromList();
             $playFromList->user = $this->_user;
             $playFromList->moodId = $mood;
-            $playFromList->genres = $genres;
+            if($genres != null) {
+                $genreArray = array();
+                foreach($genres as $value) {
+                    $newgenre = new Genre();
+                    $newgenre->Id = $value;
+                    array_push($genreArray, $newgenre);
+                }
+                $playFromList->genres = $genreArray;
+            }
+            $playFromList->genres = $genreArray;
             $playFromList->lastPlayedId = $this->get_last_played();
             $playResult = $this->_service->PlayFromList($playFromList)->PlayFromListResult;
             
@@ -167,7 +176,15 @@ class MusicHandler
             $discover = new Discover();
             $discover->user = $this->_user;
             $discover->moodId = $mood;
-            $discover->genres = $genres;
+            if($genres != null) {
+                $genreArray = array();
+                foreach($genres as $value) {
+                    $newgenre = new Genre();
+                    $newgenre->Id = $value;
+                    array_push($genreArray, $newgenre);
+                }
+                $discover->genres = $genreArray;
+            }
             $discover->lastPlayedId = $this->get_last_played();
             $discoverResult = $this->_service->Discover($discover)->DiscoverResult;
             

@@ -3,7 +3,7 @@ require "../ajax_includes.php";
 
 switch(isset($_GET['do']) ? $_GET['do'] : null) {
     case 'discover':
-        if($musicHandler->discover($loginHandler->user_session(), 1, null)) {
+        if($musicHandler->discover($loginHandler->user_session(), isset($_POST['mood']) ? $_POST['mood'] : null, isset($_POST['genres']) ? $_POST['genres'] : null)) {
             $jsonArray = $musicHandler->convert_song_to_array($musicHandler->song);
             $jsonArray['status'] = true;
         } else {
@@ -41,7 +41,7 @@ switch(isset($_GET['do']) ? $_GET['do'] : null) {
         break;
     
     default:
-        if($musicHandler->play_from_list($loginHandler->user_session(), 1, null)) {
+        if($musicHandler->play_from_list($loginHandler->user_session(), isset($_POST['mood']) ? $_POST['mood'] : null, isset($_POST['genres']) ? $_POST['genres'] : null)) {
             $jsonArray = $musicHandler->convert_song_to_array($musicHandler->song);
             $jsonArray['status'] = true;
         } else {
