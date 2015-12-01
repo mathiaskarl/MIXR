@@ -176,7 +176,7 @@ class DiscoverResponse {
 
 class DiscoverByArtist {
   public $user; // User
-  public $artist; // Artist
+  public $artistId; // int
   public $lastPlayedId; // int
 }
 
