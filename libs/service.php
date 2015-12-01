@@ -141,6 +141,9 @@ class SearchSongsResponse {
 
 class Discover {
   public $user; // User
+  public $moodId; // int
+  public $genres; // ArrayOfGenre
+  public $lastPlayedId; // int
 }
 
 class DiscoverResponse {
@@ -149,6 +152,9 @@ class DiscoverResponse {
 
 class PlayFromList {
   public $user; // User
+  public $moodId; // int
+  public $genres; // ArrayOfGenre
+  public $lastPlayedId; // int
 }
 
 class PlayFromListResponse {

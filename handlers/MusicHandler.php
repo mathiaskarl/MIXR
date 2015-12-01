@@ -122,6 +122,9 @@ class MusicHandler
             
             $playFromList = new PlayFromList();
             $playFromList->user = $this->_user;
+            $playFromList->moodId = $mood;
+            $playFromList->genres = $genres;
+            $playFromList->lastPlayedId = $this->get_last_played();
             $playResult = $this->_service->PlayFromList($playFromList)->PlayFromListResult;
             
             if(empty($playResult) || $playResult == null) {
@@ -130,6 +133,7 @@ class MusicHandler
 	    }
             
             $this->set_song($playResult);
+            $this->set_last_played($this->song->Id);
             $this->_access = true;
 	}
 	catch (Exception $ex) 
@@ -155,6 +159,9 @@ class MusicHandler
             
             $discover = new Discover();
             $discover->user = $this->_user;
+            $discover->moodId = $mood;
+            $discover->genres = $genres;
+            $discover->lastPlayedId = $this->get_last_played();
             $discoverResult = $this->_service->Discover($discover)->DiscoverResult;
             
             if(empty($discoverResult) || $discoverResult == null) {
@@ -163,6 +170,7 @@ class MusicHandler
 	    }
             
             $this->set_song($discoverResult);
+            $this->set_last_played($this->song->Id);
             $this->_access = true;
 	}
 	catch (Exception $ex) 
@@ -173,6 +181,24 @@ class MusicHandler
                 $this->_error = ErrorHandler::ReturnError($ex->getMessage());
             }
 	}
+    }
+    
+    private function set_last_played($value) {
+        $_SESSION['last_played_id'] = $value;
+    }
+    
+    public function get_last_played() 
+    {
+	if($this->last_played_exist()) {
+            return $_SESSION['last_played_id'];
+        } else {
+            return 0;
+        }
+    }
+    
+    private function last_played_exist() 
+    {
+	return (isset($_SESSION['last_played_id'])) ? true : false;
     }
     
     public function convert_song_to_array($song) {

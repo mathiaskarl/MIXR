@@ -1,9 +1,9 @@
 <?php
 if($loginHandler->check_login()) {
-    if($musicHandler->discover($loginHandler->user_session(), "mood", null)) {
+    if($musicHandler->discover($loginHandler->user_session(), 1, null)) {
         $result = $musicHandler->song;
     } elseif ($musicHandler->_error->ErrorCode == "PLAYER_NO_NEW_SONGS") {
-        if($musicHandler->play_from_list($loginHandler->user_session(), "mood", null)) {
+        if($musicHandler->play_from_list($loginHandler->user_session(), 1, null)) {
             $result = $musicHandler->song;
         } else {
             echo $musicHandler->_error->ErrorMessage;
