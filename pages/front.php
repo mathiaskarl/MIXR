@@ -1,9 +1,9 @@
 <?php
 if($loginHandler->check_login()) {
-    if($musicHandler->discover($loginHandler->user_session(), 1, null)) {
+    if($musicHandler->discover($loginHandler->user_session(), 2, null)) {
         $result = $musicHandler->song;
     } elseif ($musicHandler->_error->ErrorCode == "PLAYER_NO_NEW_SONGS") {
-        if($musicHandler->play_from_list($loginHandler->user_session(), 1, null)) {
+        if($musicHandler->play_from_list($loginHandler->user_session(), 2, null)) {
             $result = $musicHandler->song;
         } else {
             echo $musicHandler->_error->ErrorMessage;
@@ -23,6 +23,7 @@ if($loginHandler->check_login()) {
     
     
     echo "
+<<<<<<< HEAD
         <form name='discoverform' action='' method='post'>";
     foreach(getObjectsFromList($moods) as $value) {
         echo "<input type='radio' name='mood' value='".$value->Id."'";
@@ -42,6 +43,12 @@ if($loginHandler->check_login()) {
         echo ">". $value->Name;
     }
     echo "<br /><input type='button' class='discover' name='discover' value='Discover'>
+=======
+        <form name='discoverform' action='' method='post'>
+            <input type='hidden' class='artist_id' name='artist_id' value='". $result->Artist->Id ."'>
+            <input type='button' class='discover' name='discover' value='Discover'>
+            <input type='button' class='discover_by_artist' name='discover_by_artist' value='Discover More From Artist'>
+>>>>>>> 6f456e3f7744e3780da4a08929ad7dded45bf861
             <input type='button' class='playfromlist' name='playfromlist' value='Play from list'>
         </form>
         
