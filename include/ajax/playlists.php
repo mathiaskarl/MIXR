@@ -1,3 +1,8 @@
+<script type='text/javascript'>
+    $(function () {
+        $("#playlisttable").tablesorter({sortList: [[0, 0], [0, 0], [0, 0]]});
+    });
+</script>
 <?php
 require "../../include/ajax_includes.php";
 require "../../include/ajax/header_includes.php";
