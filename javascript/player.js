@@ -12,6 +12,7 @@ $(document).ready(function () {
         $('#songname').empty().append(data.songname);
         $('#filename').empty().append(data.filepath);
         $('#artist').empty().append(data.artist);
+        $('#artist_image').empty().append(data.artist_image);
         $('#album').empty().append(data.album);
         $('.song_id').attr("value", data.id);
         $('.artist_id').attr("value", data.artist_id);

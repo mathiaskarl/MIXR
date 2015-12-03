@@ -11,6 +11,7 @@ if($loginHandler->check_login()) {
     echo "<div style='margin-bottom:7px;'>Song name:<div id='songname'></div></div>";
     echo "<div style='margin-bottom:7px;'>File name:<div id='filename'></div></div>";
     echo "<div style='margin-bottom:7px;'>Artist:<div id='artist'></div></div>";
+    echo "<div style='margin-bottom:7px;'>Artist image:<div id='artist_image'></div></div>";
     echo "<div>Album:<div id='album'></div></div>";
     
     echo " <form name='discoverform' action='' method='post'>";

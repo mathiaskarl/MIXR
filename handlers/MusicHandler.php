@@ -370,6 +370,7 @@ class MusicHandler
         $array['songname'] = $song->Name;
         $array['filepath'] = $song->Filename;
         $array['artist'] = $song->Artist->Name;
+        $array['artist_image'] = $song->Artist->ImageUrl;
         $array['album'] = $song->Album->Name;
         $array['artist_id'] = $song->Artist->Id;
         $array['album_id'] = $song->Album->Id;
