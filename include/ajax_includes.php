@@ -1,8 +1,10 @@
 <?php
-require "../../libs/service.php";
-require "../../handlers/LoginHandler.php";
-require "../../handlers/ErrorHandler.php";
-require "../../handlers/MusicHandler.php";
+$root = $_SERVER['DOCUMENT_ROOT']."/MIXR/";
+require $root."libs/service.php";
+require $root."libs/functions.php";
+require $root."handlers/LoginHandler.php";
+require $root."handlers/ErrorHandler.php";
+require $root."handlers/MusicHandler.php";
 
 session_start();
 $service = new Service();

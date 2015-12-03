@@ -1,10 +1,15 @@
 <?php
+if(isset($_POST['url']) && $_POST['url'] == true) {
+    require "../include/ajax_includes.php";
+    require "../include/ajax/header_includes.php";
+}
+
 if (!$loginHandler->check_login()) {
     header('Location: http://localhost:8080/MIXR/');
     die();
 }
 
-switch (isset($_GET["step"]) ? $_GET['step'] : null) {
+switch (isset($_REQUEST["step"]) ? $_REQUEST['step'] : null) {
     case 'password':
         echo "
                 <form name='password' method='post' action=''>
@@ -102,8 +107,7 @@ switch (isset($_GET["step"]) ? $_GET['step'] : null) {
         break;
         
     default:
-        header('Location: http://localhost:8080/MIXR/');
-        die();
+        echo $_REQUEST['step'];
         break;
 }
 ?>

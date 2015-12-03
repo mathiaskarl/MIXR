@@ -5,6 +5,8 @@ class MusicHandler
     private $_user;
     private $_overwritten_genres;
     public $song;
+    public $playlist;
+    public $artist_songs;
     
     private $_access;
     private $_ws_error;
@@ -15,6 +17,19 @@ class MusicHandler
     {
         $this->_service = $service;
 	$this->_errors	= array();
+    }
+    
+    public function get_playlist($user) {
+        $this->_access = false;
+        $this->_user = $user;
+        $this->prepare_get_playlist();
+        return $this->_access;
+    }
+    
+    public function get_artist_songs($artistId) {
+        $this->_access = false;
+        $this->prepare_get_artist_songs($artistId);
+        return $this->_access;
     }
     
     public function remove_from_list($user, $songId) {
@@ -28,6 +43,12 @@ class MusicHandler
         $this->_access = false;
         $this->_user = $user;
         $this->prepare_add_to_list($user, $songId);
+        return $this->_access;
+    }
+    
+    public function play_by_id($songId) {
+        $this->_access = false;
+        $this->prepare_play_by_id($songId);
         return $this->_access;
     }
     
@@ -50,6 +71,64 @@ class MusicHandler
         $this->_user = $user;
         $this->prepare_discover_by_artist($user, $artistId);
         return $this->_access;
+    }
+    
+    private function prepare_get_playlist() {
+        try 
+	{
+            if(!isset($this->_user->Id)) {
+                throw new Exception ("USER_MUST_BE_LOGGED_IN");
+            }
+            
+            $getPlayList = new GetPlaylistSongs();
+            $getPlayList->user = $this->_user;
+            $playlistResult = $this->_service->GetPlaylistSongs($getPlayList)->GetPlaylistSongsResult;
+            
+            if(empty($playlistResult) || $playlistResult == null) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
+		throw new Exception ("WS_ERROR");
+	    }
+            
+            $this->set_playlist($playlistResult);
+            $this->_access = true;
+	}
+	catch (Exception $ex) 
+	{
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
+	}
+    }
+    
+    private function prepare_get_artist_songs($artistId) {
+        try 
+	{
+            if(empty($artistId)) {
+		throw new Exception ("EMPTY_FORM");
+	    }
+            
+            $getArtistSongs = new GetArtistSongs();
+            $getArtistSongs->artistId = $artistId;
+            $artistResult = $this->_service->GetArtistSongs($getArtistSongs)->GetArtistSongsResult;
+            
+            if(empty($artistResult) || $artistResult == null) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
+		throw new Exception ("WS_ERROR");
+	    }
+            
+            $this->set_artist_songs($artistResult);
+            $this->_access = true;
+	}
+	catch (Exception $ex) 
+	{
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
+	}
     }
     
     private function prepare_remove_from_list($user, $songId) {
@@ -115,6 +194,37 @@ class MusicHandler
             }
 	}
     }
+
+    private function prepare_play_by_id($songId) {
+        try 
+	{
+	    if(empty($songId)) {
+		throw new Exception ("EMPTY_FORM");
+	    }
+            
+            $getById = new GetSongById();
+            $getById->id = $songId;
+            
+            $songResult = $this->_service->GetSongById($getById)->GetSongByIdResult;
+
+            
+            if(empty($songResult) || $songResult == null) {
+                $this->_ws_error = $this->_service->ReturnError(new ReturnError())->ReturnErrorResult;
+		throw new Exception ("WS_ERROR");
+	    }
+            
+            $this->set_song($songResult);
+            $this->_access = true;
+	}
+	catch (Exception $ex) 
+	{
+            if($ex->getMessage() == "WS_ERROR") {
+                $this->_error = $this->_ws_error;
+            } else {
+                $this->_error = ErrorHandler::ReturnError($ex->getMessage());
+            }
+	}
+    }
     
     private function prepare_play_from_list($user, $mood, $genres = null) {
         try 
@@ -139,7 +249,6 @@ class MusicHandler
                 }
                 $playFromList->genres = $genreArray;
             }
-            $playFromList->genres = $genreArray;
             $playFromList->lastPlayedId = $this->get_last_played();
             $playResult = $this->_service->PlayFromList($playFromList)->PlayFromListResult;
             
@@ -269,6 +378,14 @@ class MusicHandler
     
     private function set_song($song) {
         $this->song = $song;
+    }
+    
+    private function set_playlist($playlist) {
+        $this->playlist = $playlist;
+    }
+    
+    private function set_artist_songs($playlist) {
+        $this->artist_songs = $playlist;
     }
     
     private function check_genres($genres = null) {

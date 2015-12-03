@@ -1,3 +1,12 @@
+function set_playlist(artist_id) {
+    $('#playlist_container').empty();
+    if(artist_id != null) {
+        $("#playlist_container").load('include/ajax/playlists.php', {'artist_id': artist_id});
+    } else {
+        $("#playlist_container").load('include/ajax/playlists.php');
+    }
+}
+    
 $(document).ready(function () {
     function replace(data) {
         $('#songname').empty().append(data.songname);
@@ -33,6 +42,45 @@ $(document).ready(function () {
         });
     });
     
+    $('.get_artist_songs').click(function () {
+        var artist_id = $(this).attr("artistid");
+        var artist_assigned = (artist_id != null && artist_id > 0);
+        if(artist_assigned === true) {
+            set_playlist(artist_id);
+        } else {
+            alert("An error occoured");
+        }
+    });
+    
+    $('.back_to_user_playlist').click(function() {
+        set_playlist();
+    });
+    
+    
+    $('.play_by_id').click(function () {
+        var form = $(this.form).serializeArray();
+        var song_id = $(this).attr("songid");
+        var song_assigned = (song_id != null && song_id > 0);
+        if(song_assigned === true) {
+            form = form.concat([
+                {name: "song_id", value: song_id}
+            ]);
+        }
+        $.ajax({
+            type: "POST",
+            url: "include/ajax/player.php?do=play_by_id",
+            data: form,
+            dataType: 'json',
+            success: function (data) {
+                if (data.status === true) {
+                    replace(data);
+                } else {
+                    alert(data.error);
+                }
+            }
+        });
+    });
+    
     $('.playfromlist').click(function () {
         var form = $(this.form);
         $.ajax({
@@ -44,6 +92,7 @@ $(document).ready(function () {
                 if (data.status === true) {
                     replace(data);
                 } else {
+                    
                     alert(data.error);
                 }
             }
@@ -67,12 +116,21 @@ $(document).ready(function () {
         });
     });
     
+   
+    
     $('.addtolist').click(function () {
-        var form = $(this.form);
+        var form = $(this.form).serializeArray();
+        var song_id = $(this).attr("songid");
+        var song_assigned = (song_id != null && song_id > 0);
+        if(song_assigned === true) {
+            form = form.concat([
+                {name: "song_id", value: song_id}
+            ]);
+        }
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php?do=add",
-            data: form.serialize(),
+            data: form,
             dataType: 'json',
             success: function (data) {
                 if (data.status === true) {
@@ -85,15 +143,28 @@ $(document).ready(function () {
     });
     
     $('.removefromlist').click(function () {
-        var form = $(this.form);
+        var form = $(this.form).serializeArray();
+        var song_id = $(this).attr("songid");
+        var song_assigned = (song_id != null && song_id > 0);
+        if(song_assigned === true) {
+            form = form.concat([
+                {name: "song_id", value: song_id}
+            ]);
+        }
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php?do=remove",
-            data: form.serialize(),
+            data: form,
             dataType: 'json',
             success: function (data) {
                 if (data.status === true) {
-                    alert("test - Removed from playlist");
+                    if(song_assigned === true) {
+                        var tr = "tr[songid="+song_id+"]";
+                        $(tr).remove();
+                        $('#playlisttable').trigger('update');
+                    } else {
+                        alert("test - Removed from playlist");
+                    }
                 } else {
                     alert(data.error);
                 }

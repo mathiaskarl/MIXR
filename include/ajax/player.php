@@ -22,6 +22,16 @@ switch(isset($_GET['do']) ? $_GET['do'] : null) {
         }
         break;
         
+    case 'play_by_id':
+        if($musicHandler->play_by_id(isset($_POST['song_id']) ? $_POST['song_id'] : null)) {
+            $jsonArray = $musicHandler->convert_song_to_array($musicHandler->song);
+            $jsonArray['status'] = true;
+        } else {
+            $jsonArray['status'] = false;
+            $jsonArray['error'] = $musicHandler->_error->ErrorMessage;
+        }
+        break;
+        
     case 'add':
         if($musicHandler->add_to_list($loginHandler->user_session(), isset($_POST['song_id']) ? $_POST['song_id'] : null)) {
             $jsonArray['status'] = true;

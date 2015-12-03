@@ -129,6 +129,22 @@ class GetMoodsResponse {
   public $GetMoodsResult; // ArrayOfMood
 }
 
+class GetPlaylistSongs {
+  public $user; // User
+}
+
+class GetPlaylistSongsResponse {
+  public $GetPlaylistSongsResult; // ArrayOfSong
+}
+
+class GetArtistSongs {
+  public $artistId; // int
+}
+
+class GetArtistSongsResponse {
+  public $GetArtistSongsResult; // ArrayOfSong
+}
+
 class GetSongById {
   public $id; // int
 }
@@ -284,6 +300,10 @@ class Service extends SoapClient {
                                     'GetGenresResponse' => 'GetGenresResponse',
                                     'GetMoods' => 'GetMoods',
                                     'GetMoodsResponse' => 'GetMoodsResponse',
+                                    'GetPlaylistSongs' => 'GetPlaylistSongs',
+                                    'GetPlaylistSongsResponse' => 'GetPlaylistSongsResponse',
+                                    'GetArtistSongs' => 'GetArtistSongs',
+                                    'GetArtistSongsResponse' => 'GetArtistSongsResponse',
                                     'GetSongById' => 'GetSongById',
                                     'GetSongByIdResponse' => 'GetSongByIdResponse',
                                     'GetAlbumById' => 'GetAlbumById',
@@ -428,6 +448,34 @@ class Service extends SoapClient {
    */
   public function GetMoods(GetMoods $parameters) {
     return $this->__soapCall('GetMoods', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetPlaylistSongs $parameters
+   * @return GetPlaylistSongsResponse
+   */
+  public function GetPlaylistSongs(GetPlaylistSongs $parameters) {
+    return $this->__soapCall('GetPlaylistSongs', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param GetArtistSongs $parameters
+   * @return GetArtistSongsResponse
+   */
+  public function GetArtistSongs(GetArtistSongs $parameters) {
+    return $this->__soapCall('GetArtistSongs', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )
