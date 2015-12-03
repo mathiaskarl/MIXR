@@ -7,5 +7,6 @@
     <script src="javascript/jquery.js" type="text/javascript"></script>
     <script src="javascript/player.js" type="text/javascript"></script>
     <script src="javascript/tablesorter.js" type="text/javascript"></script>
+    <script src="javascript/preferences.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>

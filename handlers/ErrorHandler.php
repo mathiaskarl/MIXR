@@ -61,6 +61,10 @@ class ErrorHandler
             case "USER_MUST_BE_LOGGED_IN":
                 $errorMessage = "You must be logged in to use this feature.";
                 break;
+            
+            case "PAGE_DOESNT_EXIST":
+                $errorMessage = "This page doesn't exist.";
+                break;
 
             default:
                 $errorCode = "UNKOWN_ERROR";
@@ -76,5 +80,11 @@ class ErrorHandler
         $error->ErrorCode = $errorCode;
         $error->ErrorMessage = $errorMessage;
         return $error;
+    }
+    
+    public static function ErrorPage($errorCode = null) {
+        $errorMessage = ErrorHandler::ReturnError($errorCode);
+        $root = $_SERVER['DOCUMENT_ROOT']."/MIXR/";
+        require $root."include/error.php";
     }
 }

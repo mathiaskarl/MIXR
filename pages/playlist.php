@@ -13,8 +13,8 @@ if(isset($_POST['url']) && $_POST['url'] == true) {
 }
 
 if (!$loginHandler->check_login()) {
-    header('Location: http://localhost:8080/MIXR/');
-    die();
+    ErrorHandler::ErrorPage("USER_MUST_BE_LOGGED_IN");
+} else {
+    echo "<div id='playlist_container'></div>";
 }
-echo "<div id='playlist_container'></div>";
 ?>
