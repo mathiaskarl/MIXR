@@ -1,7 +1,4 @@
 <script type='text/javascript'>
-    $(function () {
-        $("#playlisttable").tablesorter({sortList: [[0, 0], [0, 0], [0, 0]]});
-    });
     $(document).ready(function(){
         set_playlist();
     });
