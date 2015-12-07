@@ -19,8 +19,8 @@ $(document).ready(function () {
         
         
         var musicPath = "music/" + data.filepath;
-        var audio = $("#player");
-        $("#music").attr("src", musicPath);
+        var audio = $("#audio");
+        audio.attr("src", musicPath);
         audio[0].pause();
         audio[0].load();
         audio[0].oncanplaythrough = audio[0].play();

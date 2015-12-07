@@ -6,29 +6,37 @@ require "include/includes.php";
     <?php
     require "templates/header_includes.php";
     ?>
+<body>
+    <div id="top_bar">
+        <div id="clouds">
+            <div class="cloud_left_top"></div>
+            <div class="cloud_left"></div>
+            <div class="cloud_right_top"></div>
+            <div class="cloud_right"></div>
+        </div>
+        <div id="logo"></div>
+    </div>
+    
+    <div id="middle_bar">
+        <?php include "templates/menu.php"; ?>
 
-    <body>
-        <div id="main_container">
-            <div id="menu_container">
-                <?php include "templates/menu.php"; ?>
-            </div>
-
-            <div id="content_container">
-                <?php
-                if (isset($_GET['page'])) {
-                    if (in_array($_GET['page'], $pages)) {
-                        include('pages/' . $_GET['page'] . '.php');
-                    } else {
-                        include('pages/front.php');
-                    }
+        <div id="content_container">
+        <?php
+            if (isset($_GET['page'])) {
+                if (in_array($_GET['page'], $pages)) {
+                    include('pages/' . $_GET['page'] . '.php');
                 } else {
                     include('pages/front.php');
                 }
-                ?>
-            </div>
+            } else {
+                include('pages/front.php');
+            }
+        ?>
         </div>
-        <div id="footer_container">
-            <?php include "templates/footer.php"; ?>
-        </div>
-    </body>
+    </div>
+
+    <div id="bottom_bar">
+        <?php include "templates/footer.php"; ?>
+    </div>
+</body>
 </html>

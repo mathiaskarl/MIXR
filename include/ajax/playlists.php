@@ -7,6 +7,11 @@
 require "../../include/ajax_includes.php";
 require "../../include/ajax/header_includes.php";
 
+if (!$loginHandler->check_login()) {
+    ErrorHandler::ErrorPage("USER_MUST_BE_LOGGED_IN");
+    die();
+}
+
 if(isset($_REQUEST['artist_id']) && $_REQUEST['artist_id'] > 0) {
     if (!$musicHandler->get_artist_songs($_REQUEST['artist_id'])) {
         echo $musicHandler->_error->ErrorMessage;
