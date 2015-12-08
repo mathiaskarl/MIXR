@@ -37,7 +37,7 @@ $(document).ready(function () {
                 if (data.status === true) {
                     replace(data);
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -49,7 +49,7 @@ $(document).ready(function () {
         if(artist_assigned === true) {
             set_playlist(artist_id);
         } else {
-            alert("An error occoured");
+            show_error("An unknown error occoured.");
         }
     });
     
@@ -76,7 +76,7 @@ $(document).ready(function () {
                 if (data.status === true) {
                     replace(data);
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -93,8 +93,7 @@ $(document).ready(function () {
                 if (data.status === true) {
                     replace(data);
                 } else {
-                    
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -111,7 +110,7 @@ $(document).ready(function () {
                 if (data.status === true) {
                     replace(data);
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -135,9 +134,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status === true) {
-                    alert("test - Added to playlist");
+                    show_success("The song has been added to your playlist.");
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -163,11 +162,14 @@ $(document).ready(function () {
                         var tr = "tr[songid="+song_id+"]";
                         $(tr).remove();
                         $('#playlisttable').trigger('update');
-                    } else {
-                        alert("test - Removed from playlist");
+                        if($('#playlisttable tr:visible').length < 2) {
+                            show_warning("There is no songs in your playlist");
+                            $('#playlisttable').hide();
+                        }
                     }
+                    show_success("The song has been removed from your playlist.");
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });

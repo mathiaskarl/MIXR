@@ -1,8 +1,11 @@
 <?php
 if ($loginHandler->check_login()) {
-    header('Location: http://localhost:8080/MIXR/');
+    ErrorHandler::DisplayError(ErrorHandler::ReturnError("LOGIN_ALREADY_EXISTS")->ErrorMessage, false);
     die();
+} else {
+    ErrorHandler::DisplayError();
 }
+
 switch (isset($_GET['step']) ? $_GET['step'] : null) {
     case '2':
         if(!isset($_SESSION['user_create'])) {

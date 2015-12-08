@@ -1,6 +1,7 @@
 <?php
 $pages[] = "front";
 $pages[] = "login";
+$pages[] = "player";
 $pages[] = "create_user";
 $pages[] = "preferences";
 $pages[] = "playlist";

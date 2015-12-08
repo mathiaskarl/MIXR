@@ -11,6 +11,7 @@
     <script src="javascript/jquery.js" type="text/javascript"></script>
     <script src="javascript/jquery-ui.js" type="text/javascript"></script>
     <script src="javascript/bootstrap.min.js" type="text/javascript"></script>
+    <script src="javascript/alert.js" type="text/javascript"></script>
     <script src="javascript/cloud_player.js" type="text/javascript"></script>
     <script src="javascript/player.js" type="text/javascript"></script>
     <script src="javascript/tablesorter.js" type="text/javascript"></script>

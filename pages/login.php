@@ -16,7 +16,7 @@ switch (isset($_GET['do']) ? $_GET['do'] : null) {
                 header('Location: http://localhost:8080/MIXR/');
                 die();
             } else {
-                echo $loginHandler->_error->ErrorMessage;
+                ErrorHandler::DisplayError($loginHandler->_error->ErrorMessage, false);
             }
         }
         echo "

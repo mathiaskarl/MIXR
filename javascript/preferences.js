@@ -8,9 +8,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status === true) {
-                    alert("Password changed");
+                    show_success("Your password has been changed.");
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });
@@ -24,9 +24,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 if (data.status === true) {
-                    alert("Preferences changed");
+                    show_success("Your preferences has been changed.");
                 } else {
-                    alert(data.error);
+                    show_error(data.error);
                 }
             }
         });

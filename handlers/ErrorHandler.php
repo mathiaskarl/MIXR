@@ -87,4 +87,36 @@ class ErrorHandler
         $root = $_SERVER['DOCUMENT_ROOT']."/MIXR/";
         require $root."include/error.php";
     }
+    
+    public static function DisplayError($errorMessage = null, $isHidden = true) {
+        echo "<div id='alert_container' class='alert alert-danger alert-dismissible "; 
+        if($isHidden == true) {
+            echo "hidden";
+        }
+        echo "' role='alert'>
+             <a href='#' class='close alert_close' aria-label='close' title='close'>&times;</a>
+             <div class='alert_message'>". $errorMessage ."</div>
+             </div>";
+    }
+    
+    public static function DisplaySuccess($message = null, $isHidden = true) {
+        echo "<div id='success_container' class='alert alert-success alert-dismissible "; 
+        if($isHidden == true) {
+            echo "hidden";
+        }
+        echo "' role='alert'>
+             <a href='#' class='close alert_close' aria-label='close' title='close'>&times;</a>
+             <div class='alert_message'>". $message ."</div>
+             </div>";
+    }
+    
+    public static function DisplayWarning($message = null, $isHidden = true) {
+        echo "<div id='warning_container' class='alert alert-warning alert-dismissible "; 
+        if($isHidden == true) {
+            echo "hidden";
+        }
+        echo "' role='alert'>
+             <div class='warning_message'>". $message ."</div>
+             </div>";
+    }
 }

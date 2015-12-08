@@ -1,25 +1,8 @@
 <?php
-    /*echo 
-    "<div id='menu'>
-        <ul id='nav'>";
-    if($loginHandler->check_login()) {
-        echo "<li><a class='change_page' page='front' href='#'>Front</a></li>";
-        echo "<li><a class='change_page' page='playlist' href='#'>Playlist</a></li>";
-        echo "<li><a class='change_page' page='preferences' subpage='preferences' href='#'>Change Preferences</a></li>";
-        echo "<li><a class='change_page' page='preferences' subpage='password' href='#'>Change Password</a></li>";
-        echo "<li><a href='?page=login&do=logout'>Log out</a></li>";
-    } else {
-        echo "<li><a href='?page=front'>Front</a></li>
-              <li><a href='?page=create_user'>Create user</a></li>
-              <li><a href='?page=login'>Log in</a></li>";
-    }
-    echo "</ul>
-    </div>";*/
-    
     echo "<div id='menu_bar'>";
     if($loginHandler->check_login()) {
         echo "<a class='change_page' page='front' href='#'><button type='button' class='btn btn-primary'><img class='button_icon' src='images/icons/home_color.png' /> Home</button></a>
-            <a class='change_page' page='front' href='#'><button type='button' class='btn btn-primary'><img class='button_icon' src='images/icons/player_color.png' /> Music player</button></a>
+            <a class='change_page' page='player' href='#'><button type='button' class='btn btn-primary'><img class='button_icon' src='images/icons/player_color.png' /> Music player</button></a>
             <a class='change_page' page='playlist' href='#'><button type='button' class='btn btn-primary'><img class='button_icon' src='images/icons/playlist_color.png' /> Playlist</button></a>
             <a href='?page=login&do=logout'><button type='button' class='btn btn-primary' style='float:right;margin-right:0px;'><img class='button_icon' src='images/icons/logout_color.png' /> Log out</button></a>
             <div class='dropdown' style='float:right'>

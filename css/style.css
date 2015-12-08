@@ -100,6 +100,12 @@ a:hover {
 	padding: 3px 5px 3px 3px
 }
 
+.button_small_icon {
+	margin-top:-4px;
+	margin-left:-3px;
+	padding: 3px 6px 1px 3px
+}
+
 #player{
 	padding:5px 0px;
 	margin: 42px auto 0px auto;
@@ -196,7 +202,7 @@ a:hover {
     padding-left:20px;
 }
 .tablesorter tbody td {
-    padding: 4px;
+    padding: 10px 50px 0px 0px;
     vertical-align: top;
 }
 .tablesorter thead tr .headerSortUp {
@@ -204,4 +210,50 @@ a:hover {
 }
 .tablesorter thead tr .headerSortDown {
     background-image: url(../images/desc.gif);
+}
+
+.tablesorter {
+    margin: 0px auto 0px auto;
+}
+
+.custom_padding_right {
+    padding: 10px 10px 0px 0px !important;
+}
+
+.hidden {
+    display: none;
+}
+
+#changePassword {
+    width: 300px;
+    margin: 0px auto 0px auto;
+}
+
+.label {
+    margin-bottom: 1px;
+}
+
+#changePassword input {
+    width: 100% !important;
+    margin-bottom: 10px;
+}
+
+#preferenceContainer {
+    width: 400px;
+    margin: 0px auto 0px auto;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    display:table-cell !important;
+    vertical-align:middle !important;
+    margin: -2px 5px 0px 0px !important;
+}
+
+.input_text {
+    font-weight: normal;
+    margin-right: 15px;
+}
+
+.center_container {
+  text-align: center !important;
 }
