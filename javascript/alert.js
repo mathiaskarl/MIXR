@@ -28,6 +28,7 @@ function show_warning(errorMessage) {
 
 $(function() {
    $(document).on('click', '.alert_close', function() {
+       event.preventDefault();
        $('#success_container').addClass("hidden");
        $('#alert_container').addClass("hidden");
    })

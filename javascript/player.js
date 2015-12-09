@@ -10,7 +10,6 @@ function set_playlist(artist_id) {
 $(document).ready(function () {
     function replace(data) {
         $('#songname').empty().append(data.songname);
-        $('#filename').empty().append(data.filepath);
         $('#artist').empty().append(data.artist);
         $('#artist_image').empty().append(data.artist_image);
         $('#album').empty().append(data.album);
