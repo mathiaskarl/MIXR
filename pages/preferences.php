@@ -86,6 +86,7 @@ switch (isset($_REQUEST["step"]) ? $_REQUEST['step'] : null) {
         }
         echo "</tr>
             </table>
+            </td></tr>
             </table>
             
             <div class='center_container'>
