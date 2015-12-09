@@ -15,10 +15,10 @@
                 </ul>
             </div>";
     } else {
-        echo "<a href='?page=front'><button type='button' class='btn btn-primary'><img class='button_icon' src='images/icons/home_color.png' /> Home</button></a>"
+        echo "<a href='?page=front'><button type='button' class='btn btn-primary' style='float:left;'><img class='button_icon' src='images/icons/home_color.png' /> Home</button></a>"
+            . "<a href='?page=howto'><button type='button' class='btn btn-primary' style='float:left;'><img class='button_icon' src='images/icons/howto_color.png' /> How to</button></a>"
             . "<a href='?page=login'><button type='button' class='btn btn-primary' style='float:right;margin-right:0px;'><img class='button_icon' src='images/icons/login_color.png' /> Login</button></a>"
-            . "<a href='?page=create_user'><button type='button' class='btn btn-primary' style='float:right;'><img class='button_icon' src='images/icons/user_color.png' /> Create user</button></a>"
-            . "<a href='?page=howto'><button type='button' class='btn btn-primary' style='float:right;'><img class='button_icon' src='images/icons/howto_color.png' /> How to</button></a>";
+            . "<a href='?page=create_user'><button type='button' class='btn btn-primary' style='float:right;'><img class='button_icon' src='images/icons/user_color.png' /> Create user</button></a>";
     }
             
     echo "</div>";

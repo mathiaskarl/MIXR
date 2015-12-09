@@ -28,7 +28,7 @@ switch (isset($_GET['step']) ? $_GET['step'] : null) {
         $ageGroups = $service->GetAgeGroups(new GetAgeGroups())->GetAgeGroupsResult;
         $genres = $service->GetGenres(new GetGenres())->GetGenresResult;
         echo "
-        <div id='login_container'>
+        <div id='create_container'>
             <form name='submit' method='post' action='?page=create_user&step=2'>
             <table valign='top'>
             <tbody>
@@ -92,7 +92,7 @@ switch (isset($_GET['step']) ? $_GET['step'] : null) {
         $defaultValue["Username"] = (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], '?page=create_user&step=2') && isset($_SESSION['user_create']) ? $_SESSION['user_create']->Username : (isset($_POST['submit']) ? $_POST['username'] : "Username"));
         $defaultValue["Email"] = (isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], '?page=create_user&step=2') && isset($_SESSION['user_create']) ? $_SESSION['user_create']->Email : (isset($_POST['submit']) ? $_POST['email'] : "Email"));
         echo "
-    <div id='login_container'>
+    <div id='create_container'>
 	<form name='submit' method='post' action=''>
         
         <input type='hidden' name='token' value='" . $config->token . "'>
@@ -101,30 +101,30 @@ switch (isset($_GET['step']) ? $_GET['step'] : null) {
         <tr>
             <td>
                 <div class='label'>Email Address:</div>
-                <input type='text' name='email' value='' class='login_input' size='25'>
+                <input type='text' name='email' value='' class='login_input form-control' size='25'>
             </td>
 	</tr>
 	<tr>
             <td>
                 <div class='label'>Username:</div>
-                <input type='text' name='username' value='' class='login_input' size='25'>
+                <input type='text' name='username' value='' class='login_input form-control' size='25'>
             </td>
 	</tr>
         <tr>
             <td>
                 <div class='label'>Enter Your Password:</div>
-                <input type='password' name='password1' value='' class='login_input' size='25'>
+                <input type='password' name='password1' value='' class='login_input form-control' size='25'>
             </td>
 	</tr>
         <tr>
             <td>
                 <div class='label'>Repeat Your Password:</div>
-                <input type='password' name='password2' value='' class='login_input' size='25'>
+                <input type='password' name='password2' value='' class='login_input form-control' size='25'>
             </td>
 	</tr>
 	<tr>
             <td>
-                <input type='submit' name='submit' value='Create' class='login_button' style='margin-right:10px;'><input type='reset' name='reset' value='Reset fields' class='login_button'>
+                <input type='submit' name='submit' value='Create' class='login_button form-control' style='margin-right:10px;'><input type='reset' name='reset' value='Reset fields' class='login_button'>
             </td>
 	</tr>
 	</tbody>
