@@ -42,8 +42,22 @@
         Once these fields have been filled out correctly, you can press<br /> 
         the button marked "<b>Create</b>" and you will be sent on to the next step.<br />
         If, however, you want to clear all you entries, please press "<b>Reset fields</b>."<br /><br />
-        <img src="images/howto/CreatePrefs.png"><br /><br />
         
+        If all your data has been accepted, you will be presented with the formula below:
+        <br /><br />
+        <img src="images/howto/CreatePrefs.png"><br /><br />
+        Here you will be required to choose an age group and, if you'd like,<br />
+        your preferences in regards to music genres.<br />
+        Your age group and genre preferences can be changed at your will,<br />
+        after you have finished creating your profile.<br /><br />
+        
+        Once again, if you want to clear all your entries, please press "<b>Reset fields</b>."<br />
+        Otherwise, click the button marked "<b>Create</b>" and your profile should now be created.<br /><br />
+        
+        Once you have gone through these steps, you should automatically be logged in to <b>MIXR</b>.<br /><br />
+        If you already have an account, you can log in by pressing the button marked "<b>Login</b>"<br />
+        in the upper right corner, next to the "<b>Create user</b>" button.<br />
+        You will then be asked to input your email or username, as well as your password.<br /><br />
     </div>
     
     <br />
@@ -60,7 +74,16 @@
     </div>
     <br />
     <div id="prefs">
-        <b>Edit your preferences</b>
+        <b>Edit your preferences</b><br /><br />
+        If you would like to edit your age group or your default music preferences,<br />
+        you can do so by pressing the "<b>Settings</b>" button in the top right corner<br />
+        followed by pressing the tab marked "<b>Preferences</b>", as shown below.<br /><br />
+        <img src="images/howto/temp.png"><br /><br />
+        You will then be presented with the following form, that will allow you to change<br /> 
+        your age group, as well as adding and removing content to your preferred musical genres.<br /><br />
+        <img src="images/howto/temp.png"><br /><br />
+        When you are done editing your preferences, simply press the button marked "<b>Change preferences</b>"<br />
+        and your new preferences will be saved to your account.
     </div>
     <br />
     <div id="newpassword">
