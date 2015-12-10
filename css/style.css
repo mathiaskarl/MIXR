@@ -313,6 +313,9 @@ input[type="radio"], input[type="checkbox"] {
     -ms-user-select: none;
     color: #FFF;
     background-color: #f9f9f9;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 100%;
     //border-color: #d0d1d1;
 }
 

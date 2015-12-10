@@ -26,7 +26,7 @@ echo "
         <div id='player_left_bar'>
             &nbsp;
             <form name='addremoveform' action='' method='post'>
-                <input type='hidden' class='song_id' name='song_id'>
+                <input type='hidden' class='song_id' name='song_id' value='"; if(isset($_SESSION['current_song'])) { echo $_SESSION['current_song']->Id; } else { echo ""; } echo "'>
                 <div class='addremove_playlist_button' style='margin-top:50px;' data-content='Add to playlist' rel='popover' data-placement='top' data-trigger='hover'>
                     <input type='button' id='add_playlist_image' class='addtolist' name='addtolist'>
                 </div>
@@ -35,27 +35,28 @@ echo "
                 </div>
             </form>
             <div id='player_image'>
-                <div id='player_image_box'></div>
+                <div id='player_image_box'>
+                    <img id='artist_image' class='img-rounded' style='position:relative;top: 50%;transform: translateY(-50%);max-width:100%; max-height: 100%;' src='"; if(isset($_SESSION['current_song']) && $_SESSION['current_song']->Artist->ImageUrl != null && $_SESSION['current_song']->Artist->ImageUrl != "") { echo $_SESSION['current_song']->Artist->ImageUrl; } else { echo "images/no_artist_image.png"; } echo "'>
+                </div>
             </div>
             
             <div id='player_description'>
                 <table style='width:100%;margin-top:10px;'>
                 <tr>
                     <td style='width:50%;vertical-align:top'><b>Song title:</b>
-                        <div id='songname'>No song to display</div>
+                        <div id='songname'>"; if(isset($_SESSION['current_song'])) { echo $_SESSION['current_song']->Name; } else { echo "No song to display"; } echo "</div>
                     </td>
                     <td style='width:50%;vertical-align:top;'><b>Artist:</b>
-                        <div id='artist'>No artist to display</div>
+                        <div id='artist'>"; if(isset($_SESSION['current_song'])) { echo $_SESSION['current_song']->Artist->Name; } else { echo "No artist to display"; } echo "</div>
                     </td>
                 </tr>
                 <tr>
                     <td style='width:50%;vertical-align:top;padding-top:10px;'><b>Album:</b>
-                        <div id='album'>No album to display</div>
+                        <div id='album'>"; if(isset($_SESSION['current_song'])) { echo $_SESSION['current_song']->Album->Name; } else { echo "No album to display"; } echo "</div>
                     </td>
                     <td></td>
                 </tr>
                 </table>
-                <div style='margin-bottom:7px;display:none;'>Artist image:<div id='artist_image'></div></div>
             </div>
         </div>
         
@@ -93,7 +94,7 @@ echo "
             </div>
             <div style='clear:both;'></div>
             <div style='margin-top:70px;'>
-                <input type='hidden' class='artist_id' name='artist_id'>
+                <input type='hidden' class='artist_id' name='artist_id' value='"; if(isset($_SESSION['current_song'])) { echo $_SESSION['current_song']->Artist->Id; } else { echo ""; } echo "'>
                 <button type='button' class='playfromlist btn btn-primary' style='width:100% !important;text-align:left !important'><img class='button_icon' src='images/icons/playlist_color.png' /> Play from playlist</button>
                 <button type='button' class='discover btn btn-primary' style='width:100% !important; margin-top:9px;text-align:left !important'><img class='button_icon' src='images/icons/discover_big_color.png' /> Discover song</button>
                 <button type='button' class='discover_by_artist btn btn-primary' style='width:100% !important; margin-top:9px;text-align:left !important'><img class='button_icon' src='images/icons/discover_artist_color.png' /> Discover from artist</button>

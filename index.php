@@ -1,5 +1,6 @@
 <?php
 require "include/includes.php";
+unset($_SESSION['current_song']);
 ?>
 <!DOCTYPE html>
 <html>
