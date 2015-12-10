@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" charset="UTF-8">
     <meta name="description" content="TBA">
     <meta name="keywords" content="MIXR, musik, humør">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/clouds.css">
+    <link rel="stylesheet" href="css/style_dark.css">
+    <link rel="stylesheet" href="css/clouds_dark.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
     <script src="javascript/jquery.js" type="text/javascript"></script>

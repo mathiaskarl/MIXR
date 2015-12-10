@@ -1059,6 +1059,7 @@ fieldset[disabled] .btn-success.focus {
   color: #ffffff;
   background-color: #49bbef;
 }
+
 .btn-info.active {
   outline: 0;
   background-image: none;
