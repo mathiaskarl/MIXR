@@ -1,5 +1,6 @@
 <?php
 require "include/includes.php";
+unset($_SESSION['current_song']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,7 @@ require "include/includes.php";
         ?>
         </div>
     </div>
-
+    <div style="width:100%; height: 200px;"></div>
     <div id="bottom_bar">
         <?php include "templates/footer.php"; ?>
     </div>

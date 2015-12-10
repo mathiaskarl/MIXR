@@ -9,10 +9,13 @@ function set_playlist(artist_id) {
     
 $(document).ready(function () {
     function replace(data) {
+        var artist_img = data.artist_image;
+        if(artist_img === null || artist_img === "") {
+            artist_img = "images/no_artist_image.png";
+        }
         $('#songname').empty().append(data.songname);
-        $('#filename').empty().append(data.filepath);
         $('#artist').empty().append(data.artist);
-        $('#artist_image').empty().append(data.artist_image);
+        $('#artist_image').attr("src", artist_img);
         $('#album').empty().append(data.album);
         $('.song_id').attr("value", data.id);
         $('.artist_id').attr("value", data.artist_id);

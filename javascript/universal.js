@@ -22,6 +22,7 @@ function change_page(pagename, subpage) {
 
 $(document).ready(function () {
     $('.change_page').click(function () {
+        event.preventDefault();
         var page = $(this).attr("page");
         var subpage = $(this).attr("subpage");
         change_page(page, subpage);

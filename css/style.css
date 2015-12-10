@@ -43,7 +43,7 @@ a:hover {
 #middle_bar {
 	width: 900px;
 	margin: 0px auto 0px auto;
-	min-height: 800px;
+	min-height: 600px;
 	background-color: #FFFFFF;
 }
 
@@ -276,4 +276,88 @@ input[type="radio"], input[type="checkbox"] {
 #create_container input {
     width: 100% !important;
     margin-bottom: 10px;
+}
+
+#player_container {
+    margin: 0px auto 0px auto;
+    width: 700px;
+    height: 475px;
+}
+
+#player_left_bar {
+    width: 70%;
+    height: 100%;
+    float:left;
+}
+
+#player_right_bar {
+    width: 30%;
+    height: 100%;
+    padding-left:11px;
+    float:right;
+}
+
+#player_image {
+    width: 100%;
+    height: 65%;
+}
+
+#player_image_box {
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    padding: 12px 12px;
+    border-radius: 6px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    color: #FFF;
+    background-color: #f9f9f9;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 100%;
+    //border-color: #d0d1d1;
+}
+
+#player_description {
+    width: 100%;
+    height: 25%;
+}
+
+.addremove_playlist_button {
+    background-color: #bfbfbf;
+    border-color: #d0d1d1;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    position:absolute;
+    margin: 0px 0px 0px -18px;
+}
+
+.addremove_playlist_button:hover {
+    background-color: #d5d5d5;
+}
+
+#add_playlist_image {
+    width: 40px;
+    height: 40px;
+    background: url('../images/icons/add_playlist_color.png') no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+#remove_playlist_image {
+    width: 40px;
+    height: 40px;
+    background: url('../images/icons/remove_playlist_color.png') no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0;
+    border: 0;
+    outline: 0;
 }
