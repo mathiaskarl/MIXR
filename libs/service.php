@@ -49,6 +49,7 @@ class Album {
 
 class Artist {
   public $Id; // int
+  public $ImageUrl; // string
   public $Name; // string
 }
 
@@ -81,6 +82,14 @@ class Login {
 
 class LoginResponse {
   public $LoginResult; // boolean
+}
+
+class RetrievePassword {
+  public $emailOrUsername; // string
+}
+
+class RetrievePasswordResponse {
+  public $RetrievePasswordResult; // boolean
 }
 
 class ChangePassword {
@@ -245,6 +254,13 @@ class CheckUsernameEmailExistsResponse {
   public $CheckUsernameEmailExistsResult; // boolean
 }
 
+class IsDaytime {
+}
+
+class IsDaytimeResponse {
+  public $IsDaytimeResult; // boolean
+}
+
 class ReturnError {
 }
 
@@ -288,6 +304,8 @@ class Service extends SoapClient {
                                     'CreateUserResponse' => 'CreateUserResponse',
                                     'Login' => 'Login',
                                     'LoginResponse' => 'LoginResponse',
+                                    'RetrievePassword' => 'RetrievePassword',
+                                    'RetrievePasswordResponse' => 'RetrievePasswordResponse',
                                     'ChangePassword' => 'ChangePassword',
                                     'ChangePasswordResponse' => 'ChangePasswordResponse',
                                     'ChangePreferences' => 'ChangePreferences',
@@ -326,6 +344,8 @@ class Service extends SoapClient {
                                     'AddSongToDatabaseResponse' => 'AddSongToDatabaseResponse',
                                     'CheckUsernameEmailExists' => 'CheckUsernameEmailExists',
                                     'CheckUsernameEmailExistsResponse' => 'CheckUsernameEmailExistsResponse',
+                                    'IsDaytime' => 'IsDaytime',
+                                    'IsDaytimeResponse' => 'IsDaytimeResponse',
                                     'ReturnError' => 'ReturnError',
                                     'ReturnErrorResponse' => 'ReturnErrorResponse',
                                     'char' => 'char',
@@ -364,6 +384,20 @@ class Service extends SoapClient {
    */
   public function Login(Login $parameters) {
     return $this->__soapCall('Login', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param RetrievePassword $parameters
+   * @return RetrievePasswordResponse
+   */
+  public function RetrievePassword(RetrievePassword $parameters) {
+    return $this->__soapCall('RetrievePassword', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )
@@ -630,6 +664,20 @@ class Service extends SoapClient {
    */
   public function CheckUsernameEmailExists(CheckUsernameEmailExists $parameters) {
     return $this->__soapCall('CheckUsernameEmailExists', array($parameters),       array(
+            'uri' => 'http://tempuri.org/',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /**
+   *  
+   *
+   * @param IsDaytime $parameters
+   * @return IsDaytimeResponse
+   */
+  public function IsDaytime(IsDaytime $parameters) {
+    return $this->__soapCall('IsDaytime', array($parameters),       array(
             'uri' => 'http://tempuri.org/',
             'soapaction' => ''
            )

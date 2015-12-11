@@ -36,7 +36,7 @@ echo "
             </form>
             <div id='player_image'>
                 <div id='player_image_box'>
-                    <img id='artist_image' class='img-rounded' style='position:relative;top: 50%;transform: translateY(-50%);max-width:100%; max-height: 100%;' src='"; if(isset($_SESSION['current_song']) && $_SESSION['current_song']->Artist->ImageUrl != null && $_SESSION['current_song']->Artist->ImageUrl != "") { echo $_SESSION['current_song']->Artist->ImageUrl; } else { echo "images/no_artist_image.png"; } echo "'>
+                    <img id='artist_image' class='img-rounded' style='z-index:5;position:relative;top: 50%;transform: translateY(-50%);max-width:100%; max-height: 100%;' src='"; if(isset($_SESSION['current_song']) && $_SESSION['current_song']->Artist->ImageUrl != null && $_SESSION['current_song']->Artist->ImageUrl != "") { echo $_SESSION['current_song']->Artist->ImageUrl; } else { echo "images/no_artist_image.png"; } echo "'>
                 </div>
             </div>
             
