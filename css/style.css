@@ -332,12 +332,12 @@ input[type="radio"], input[type="checkbox"] {
     border-radius: 4px;
     position:absolute;
     margin: 0px 0px 0px -18px;
-    z-index: 10;
+    z-index: 7;
 }
 
 .addremove_playlist_button:hover {
     background-color: #d5d5d5;
-    z-index: 10;
+    z-index: 7;
 }
 
 #add_playlist_image {
@@ -362,4 +362,10 @@ input[type="radio"], input[type="checkbox"] {
     padding: 0;
     border: 0;
     outline: 0;
+}
+
+#loading_page {
+    width: 128px;
+    height: 128px;
+    margin: 50px auto 0px auto;
 }

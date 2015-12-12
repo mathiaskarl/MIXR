@@ -1,5 +1,17 @@
+function loading_page(isLoading) {
+    if(isLoading === true) {
+        $('#content_container').addClass("hidden");
+        $('#loading_page').removeClass("hidden");
+    } else {
+        $('#loading_page').addClass("hidden");
+        $('#content_container').removeClass("hidden");
+    }
+}
+
 function change_page(pagename, subpage) {
     $("#content_container").html("");
+    var startTime = new Date().getTime();
+    loading_page(true);
     if (pagename != null) {
         var url = "include/ajax/pages.php?page=" + pagename;
         $.ajax({
@@ -9,14 +21,39 @@ function change_page(pagename, subpage) {
             success: function (data) {
                 if (data.status === true) {
                     var page = "pages/" + data.pagename + ".php";
-                    $("#content_container").load(page, {'url': false, 'step': subpage});
+                    $("#content_container").load(page, {'url': false, 'step': subpage}, function() {
+                        var elapsedTime = (new Date().getTime()) - startTime;
+                        if(elapsedTime < 700) {
+                            setTimeout(function() { loading_page(false); $('.change_page').find('button').removeAttr("disabled"); }, (700-elapsedTime));
+                        } else {
+                            loading_page(false);
+                            $('.change_page').find('button').removeAttr("disabled");
+                        }
+                    });
                 } else {
-                    $("#content_container").load('pages/front.php', {'url': false});
+                    $("#content_container").load('pages/front.php', {'url': false}, function() {
+                        var elapsedTime = (new Date().getTime()) - startTime;
+                        if(elapsedTime < 700) {
+                            setTimeout(function() { loading_page(false); $('.change_page').find('button').removeAttr("disabled"); }, (700-elapsedTime));
+                        } else {
+                            loading_page(false);
+                            $('.change_page').find('button').removeAttr("disabled");
+                        }
+                    });
                 }
             }
         });
     } else {
-        $("#content_container").load('pages/front.php', {'url': false});
+        $("#content_container").load('pages/front.php', {'url': false}, function() {
+            var elapsedTime = (new Date().getTime()) - startTime;
+            if(elapsedTime < 700) {
+                setTimeout(function() { loading_page(false) }, (700-elapsedTime));
+            } else {
+                loading_page(false)
+            }
+            alert("HER");
+            $('.change_page').find('button').removeAttr("disabled");
+        });
     }
 }
 
@@ -61,8 +98,23 @@ $(function() {
     }
 });
 
+function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+    });
+}
+
+$(function() {
+    preload([
+    'images/loading_page.GIF',
+    'images/loading_player.GIF'
+    ]);
+});
+
 $(document).ready(function () {
     $('.change_page').click(function () {
+        $('.change_page').attr("disabled", true);
+        $('.change_page').find('button').attr("disabled", true);
         event.preventDefault();
         var page = $(this).attr("page");
         var subpage = $(this).attr("subpage");

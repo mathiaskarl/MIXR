@@ -31,6 +31,8 @@ $(document).ready(function () {
     
     $('.discover').click(function () {
         var form = $(this.form);
+        $(this).attr("disabled", true);
+        $('#artist_image').attr("src", "images/loading_player.GIF");
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php?do=discover",
@@ -41,7 +43,11 @@ $(document).ready(function () {
                     replace(data);
                 } else {
                     show_error(data.error);
+                    $('#artist_image').attr("src", "images/no_artist_image.png");
                 }
+            },
+            complete: function() {
+                $('.discover').removeAttr("disabled");
             }
         });
     });
@@ -62,6 +68,7 @@ $(document).ready(function () {
     
     
     $('.play_by_id').click(function () {
+        $(this).attr("disabled", true);
         var form = $(this.form).serializeArray();
         var song_id = $(this).attr("songid");
         var song_assigned = (song_id != null && song_id > 0);
@@ -81,12 +88,17 @@ $(document).ready(function () {
                 } else {
                     show_error(data.error);
                 }
+            },
+            complete: function() {
+                $('.play_by_id').removeAttr("disabled");
             }
         });
     });
     
     $('.playfromlist').click(function () {
         var form = $(this.form);
+        $(this).attr("disabled", true);
+        $('#artist_image').attr("src", "images/loading_player.GIF");
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php",
@@ -97,13 +109,19 @@ $(document).ready(function () {
                     replace(data);
                 } else {
                     show_error(data.error);
+                    $('#artist_image').attr("src", "images/no_artist_image.png");
                 }
+            },
+            complete: function() {
+                $('.playfromlist').removeAttr("disabled");
             }
         });
     });
     
     $('.discover_by_artist').click(function () {
         var form = $(this.form);
+        $(this).attr("disabled", true);
+        $('#artist_image').attr("src", "images/loading_player.GIF");
         $.ajax({
             type: "POST",
             url: "include/ajax/player.php?do=discover_by_artist",
@@ -114,7 +132,11 @@ $(document).ready(function () {
                     replace(data);
                 } else {
                     show_error(data.error);
+                    $('#artist_image').attr("src", "images/no_artist_image.png");
                 }
+            },
+            complete: function() {
+                $('.discover_by_artist').removeAttr("disabled");
             }
         });
     });
@@ -122,6 +144,7 @@ $(document).ready(function () {
    
     
     $('.addtolist').click(function () {
+        $(this).attr("disabled", true);
         var form = $(this.form).serializeArray();
         var song_id = $(this).attr("songid");
         var song_assigned = (song_id != null && song_id > 0);
@@ -141,11 +164,15 @@ $(document).ready(function () {
                 } else {
                     show_error(data.error);
                 }
+            },
+            complete: function() {
+                $('.addtolist').removeAttr("disabled");
             }
         });
     });
     
     $('.removefromlist').click(function () {
+        $(this).attr("disabled", true);
         var form = $(this.form).serializeArray();
         var song_id = $(this).attr("songid");
         var song_assigned = (song_id != null && song_id > 0);
@@ -174,6 +201,9 @@ $(document).ready(function () {
                 } else {
                     show_error(data.error);
                 }
+            },
+            complete: function() {
+                $('.removefromlist').removeAttr("disabled");
             }
         });
     });

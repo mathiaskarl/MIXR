@@ -17,10 +17,13 @@ unset($_SESSION['current_song']);
         </div>
         <div id="logo"></div>
     </div>
-    
     <div id="middle_bar">
         <?php include "templates/menu.php"; ?>
 
+        <div id="loading_page" class="hidden">
+            <img src="images/loading_page.GIF" />
+        </div>
+        
         <div id="content_container">
         <?php
             if (isset($_GET['page'])) {
