@@ -51,7 +51,6 @@ function change_page(pagename, subpage) {
             } else {
                 loading_page(false)
             }
-            alert("HER");
             $('.change_page').find('button').removeAttr("disabled");
         });
     }
@@ -66,7 +65,7 @@ function set_design_type() {
         async: true,
         success: function (data) {
             var date = new Date();
-            var minutes = 1;
+            var minutes = 20;
             date.setTime(date.getTime() + (minutes * 60 * 1000));
             if (data.status === true) {
                 $.cookie("design_type", data.daytime, { expires: date });
