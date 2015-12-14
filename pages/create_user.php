@@ -81,7 +81,7 @@ switch (isset($_GET['step']) ? $_GET['step'] : null) {
     default:
         if (isset($_POST['submit'])) {
             if ($userHandler->prepare_create_user($_POST['email'], $_POST['username'], $_POST['password1'], $_POST['password2'], $_POST['token'])) {
-                header('Location: http://'. $_SERVER['HTTP_HOST'] .'/?page=create_user&step=2');
+                header('Location: http://'. $_SERVER['HTTP_HOST'] .'/mixr/?page=create_user&step=2');
                 die();
             } else {
                 ErrorHandler::DisplayError($userHandler->_error->ErrorMessage, false);
