@@ -7,14 +7,14 @@ if ($loginHandler->check_login()) {
 switch (isset($_GET['step']) ? $_GET['step'] : null) {
     case '2':
         if(!isset($_SESSION['user_create'])) {
-            header('Location: http://localhost:8080/MIXR/?page=create_user');
+            header('Location: http://'. $_SERVER['HTTP_HOST'] .'/?page=create_user');
             die();
         }
         if (isset($_POST['submit'])) {
             if ($userHandler->create_user((isset($_POST['agegroup']) ? $_POST['agegroup'] : null), isset($_POST['genres']) ? $_POST['genres'] : null)) {
                 if($loginHandler->check_login($userHandler->get_prepare_session()->Username, $userHandler->get_prepare_session()->Password, $config->token)) {
                     $userHandler->unset_prepare_session();
-                    header('Location: http://localhost:8080/MIXR/');
+                    header('Location: http://'. $_SERVER['HTTP_HOST'] .'/');
                     die();
                 } else {
                     ErrorHandler::DisplayError($loginHandler->_error->ErrorMessage, false);
@@ -81,7 +81,7 @@ switch (isset($_GET['step']) ? $_GET['step'] : null) {
     default:
         if (isset($_POST['submit'])) {
             if ($userHandler->prepare_create_user($_POST['email'], $_POST['username'], $_POST['password1'], $_POST['password2'], $_POST['token'])) {
-                header('Location: http://localhost:8080/MIXR/index.php?page=create_user&step=2');
+                header('Location: http://'. $_SERVER['HTTP_HOST'] .'/?page=create_user&step=2');
                 die();
             } else {
                 ErrorHandler::DisplayError($userHandler->_error->ErrorMessage, false);

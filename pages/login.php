@@ -2,18 +2,18 @@
 switch (isset($_GET['do']) ? $_GET['do'] : null) {
     case 'logout':
         $loginHandler->log_out();
-        header('Location: http://localhost:8080/MIXR/');
+        header('Location: http://'. $_SERVER['HTTP_HOST'] .'/');
         die();
         break;
 
     default:
         if ($loginHandler->check_login()) {
-            header('Location: http://localhost:8080/MIXR/');
+            header('Location: http://'. $_SERVER['HTTP_HOST'] .'/');
             die();
         }
         if (isset($_POST['submit'])) {
             if ($loginHandler->check_login($_POST['username'], $_POST['password'], $_POST['token'])) {
-                header('Location: http://localhost:8080/MIXR/');
+                header('Location: http://'. $_SERVER['HTTP_HOST'] .'/');
                 die();
             } else {
                 ErrorHandler::DisplayError($loginHandler->_error->ErrorMessage, false);
