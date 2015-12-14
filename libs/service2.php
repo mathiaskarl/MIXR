@@ -353,7 +353,7 @@ class Service extends SoapClient {
                                     'guid' => 'guid',
                                    );
 
-  public function Service($wsdl = "http://mixr.cloudapp.net/Services/Service.svc?wsdl", $options = array()) {
+  public function Service($wsdl = "http://localhost:4832/Services/Service.svc?wsdl", $options = array()) {
     foreach(self::$classmap as $key => $value) {
       if(!isset($options['classmap'][$key])) {
         $options['classmap'][$key] = $value;

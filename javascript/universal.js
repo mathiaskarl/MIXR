@@ -65,7 +65,7 @@ function set_design_type() {
         async: true,
         success: function (data) {
             var date = new Date();
-            var minutes = 20;
+            var minutes = 1;
             date.setTime(date.getTime() + (minutes * 60 * 1000));
             if (data.status === true) {
                 $.cookie("design_type", data.daytime, { expires: date });
